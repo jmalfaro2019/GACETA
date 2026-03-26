@@ -5,11 +5,11 @@ import { Scale, Users, Activity } from "lucide-react";
 export default function HomePage() {
   const totals = laws.reduce(
     (acc, l) => ({
-      favor: acc.favor + l.votacion.favor,
-      contra: acc.contra + l.votacion.contra,
-      abs: acc.abs + l.votacion.abstenciones,
+      favor: acc.favor + l.voting.favor,
+      against: acc.against + l.voting.against,
+      abstentions: acc.abstentions + l.voting.abstentions,
     }),
-    { favor: 0, contra: 0, abs: 0 }
+    { favor: 0, against: 0, abstentions: 0 }
   );
 
   return (
@@ -41,27 +41,27 @@ export default function HomePage() {
 
           <div className="relative">
             <span className="inline-block mb-4 px-3 py-1 rounded-full text-xs font-semibold bg-blue-600/20 text-blue-400 border border-blue-500/30">
-              Plataforma ciudadana
+              Civic Platform
             </span>
             <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-white">
-              Vigila el{" "}
+              Monitor the{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
-                Congreso
+                Colombian
               </span>{" "}
-              de Colombia
+              Congress
             </h1>
             <p className="text-slate-400 max-w-xl text-base md:text-lg leading-relaxed">
-              Seguimiento en tiempo real de proyectos de ley, debates y
-              votaciones del Senado y Cámara de Representantes.
+              Real-time tracking of bills, debates and votes from the Senate
+              and House of Representatives.
             </p>
           </div>
 
           {/* Stats row */}
           <div className="relative mt-8 grid grid-cols-3 gap-4 max-w-md">
             {[
-              { label: "Leyes seguidas", value: laws.length, icon: Scale, color: "#60a5fa" },
-              { label: "Votos a favor", value: totals.favor, icon: Activity, color: "#4ade80" },
-              { label: "Votos en contra", value: totals.contra, icon: Users, color: "#f87171" },
+              { label: "Bills Tracked", value: laws.length, icon: Scale, color: "#60a5fa" },
+              { label: "Votes in Favor", value: totals.favor, icon: Activity, color: "#4ade80" },
+              { label: "Votes Against", value: totals.against, icon: Users, color: "#f87171" },
             ].map(({ label, value, icon: Icon, color }) => (
               <div
                 key={label}
@@ -81,9 +81,9 @@ export default function HomePage() {
       <section>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold text-white">
-            Proyectos de Ley Activos
+            Active Bills
           </h2>
-          <span className="text-sm text-slate-400">{laws.length} resultados</span>
+          <span className="text-sm text-slate-400">{laws.length} results</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-5">

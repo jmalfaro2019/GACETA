@@ -4,8 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { Bot, Send, User } from "lucide-react";
 
 interface Message {
-  role: "user" | "ia";
-  texto: string;
+  role: "user" | "ai";
+  text: string;
 }
 
 export default function ChatWidget({
@@ -28,13 +28,13 @@ export default function ChatWidget({
     if (!trimmed) return;
     setMessages((prev) => [
       ...prev,
-      { role: "user", texto: trimmed },
+      { role: "user", text: trimmed },
       {
-        role: "ia",
-        texto:
-          "Esta función estará disponible próximamente. Estamos integrando nuestra IA para analizar \"" +
+        role: "ai",
+        text:
+          "This feature will be available soon. We are integrating our AI to analyze \"" +
           lawTitle +
-          "\" y responder tus preguntas en tiempo real.",
+          "\" and answer your questions in real time.",
       },
     ]);
     setInput("");
@@ -55,10 +55,10 @@ export default function ChatWidget({
         </div>
         <div>
           <p className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>
-            IA Legislativa
+            Legislative AI
           </p>
           <p className="text-xs" style={{ color: "var(--text-secondary)" }}>
-            Análisis contextual basado en el texto oficial de la ley
+            Contextual analysis based on the official law text
           </p>
         </div>
         <span className="ml-auto flex items-center gap-1.5 text-xs text-green-400">
@@ -80,10 +80,10 @@ export default function ChatWidget({
             {/* Avatar */}
             <div
               className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${
-                msg.role === "ia" ? "bg-blue-600" : "bg-slate-600"
+                msg.role === "ai" ? "bg-blue-600" : "bg-slate-600"
               }`}
             >
-              {msg.role === "ia" ? (
+              {msg.role === "ai" ? (
                 <Bot size={14} className="text-white" />
               ) : (
                 <User size={14} className="text-white" />
@@ -96,13 +96,13 @@ export default function ChatWidget({
               }`}
               style={{
                 backgroundColor:
-                  msg.role === "ia"
+                  msg.role === "ai"
                     ? "rgba(59,130,246,0.1)"
                     : "rgba(148,163,184,0.1)",
                 color: "var(--text-primary)",
               }}
             >
-              {msg.texto}
+              {msg.text}
             </div>
           </div>
         ))}
@@ -119,7 +119,7 @@ export default function ChatWidget({
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          placeholder={`Pregúntale a nuestra IA sobre "${lawTitle}"…`}
+          placeholder={`Ask our AI about "${lawTitle}"…`}
           className="flex-1 bg-transparent text-sm outline-none placeholder:text-slate-500"
           style={{ color: "var(--text-primary)" }}
         />

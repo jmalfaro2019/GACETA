@@ -8,9 +8,9 @@ from confluent_kafka import Producer
 class CongresoSpider(scrapy.Spider):
     name = 'congreso'
     start_urls = ['https://svrpubindc.imprenta.gov.co/senado/']
-    total_paginas = 1
-    total_documentos = 1
-    # Creamos una carpeta para guardar los resultados
+    total_pages = 1
+    total_documents = 1
+    # Create a folder to save results
     os.makedirs("documents", exist_ok=True)
     custom_settings = {
         'CONCURRENT_REQUESTS': 1,
@@ -19,92 +19,92 @@ class CongresoSpider(scrapy.Spider):
     
     def __init__(self, *args, **kwargs):
         super(CongresoSpider, self).__init__(*args, **kwargs)
-        # 2. Conectar a tu Kafka local
+        # 2. Connect to your local Kafka
         self.producer = Producer({'bootstrap.servers': 'localhost:9092'})
-        self.topic = 'gacetas_nuevas' # Cambia esto si tu tópico de prueba se llama distinto
+        self.topic = 'new_gazettes' # Change this if your test topic has a different name
 
     def parse(self, response):
-        self.log('--- Iniciando: Buscando ViewState inicial ---')
+        self.log('--- Starting: Looking for initial ViewState ---')
         view_state = response.css('input[name="javax.faces.ViewState"]::attr(value)').get()
         
         if view_state:
-            # Iniciamos en la página 0, y le decimos que empiece en el documento 0 de esa página
-            yield from self.descargar_documento(pagina_actual=0, indice_en_pagina=0, view_state=view_state)
+            # Start at page 0, and tell it to start at document 0 of that page
+            yield from self.download_document(current_page=0, page_index=0, view_state=view_state)
 
-    # Nota: Le quitamos 'response' a los parámetros porque ya no lo necesitamos para armar la petición
-    def descargar_documento(self, pagina_actual, indice_en_pagina, view_state):
-        # Calculamos el botón exacto (ej. Página 1, doc 2 = botón 52)
-        indice_absoluto = (pagina_actual * 50) + indice_en_pagina
-        boton_exacto = f'formResumen:dataTableResumen:{indice_absoluto}:btnDescargarPdf'
+    # Note: Removed 'response' from parameters because we don't need it to build the request
+    def download_document(self, current_page, page_index, view_state):
+        # Calculate exact button (e.g. Page 1, doc 2 = button 52)
+        absolute_index = (current_page * 50) + page_index
+        exact_button = f'formResumen:dataTableResumen:{absolute_index}:btnDescargarPdf'
         
-        # Le sumamos 1 al índice solo para que en la consola se lea "1 al 50" en lugar de "0 al 49"
-        self.log(f'--- Solicitando PDF: Página {pagina_actual}, Documento {indice_en_pagina + 1}/50 ---')
+        # Add 1 to index just so console shows "1 to 50" instead of "0 to 49"
+        self.log(f'--- Requesting PDF: Page {current_page}, Document {page_index + 1}/50 ---')
         
-        datos_formulario = {
+        form_data = {
             'formResumen': 'formResumen',
             'formResumen:dataTableResumen:j_idt11:filter': '',
             'formResumen:dataTableResumen:j_idt14_focus': '',
             'formResumen:dataTableResumen:j_idt14_input': '',
             'formResumen:dataTableResumen:calFechaGaceta_input': '',
             'formResumen:dataTableResumen:j_idt20:filter': '',
-            boton_exacto: 'ui-button', 
+            exact_button: 'ui-button', 
             'javax.faces.ViewState': view_state
         }
 
         yield scrapy.FormRequest(
             url=self.start_urls[0],
-            formdata=datos_formulario,
-            callback=self.guardar_pdf,
-            meta={'pagina': pagina_actual, 'indice_en_pagina': indice_en_pagina, 'view_state': view_state},
+            formdata=form_data,
+            callback=self.save_pdf,
+            meta={'page': current_page, 'page_index': page_index, 'view_state': view_state},
             dont_filter=True
         )
 
-    def guardar_pdf(self, response):
-        pagina = response.meta['pagina']
-        indice_en_pagina = response.meta['indice_en_pagina']
+    def save_pdf(self, response):
+        current_page = response.meta['page']
+        page_index = response.meta['page_index']
         view_state = response.meta['view_state']
         
-        # Aplicamos el nombre que pediste: enumeración de página y enumeración en la página
-        carpeta_destino = 'documents'
-        os.makedirs(carpeta_destino, exist_ok=True)
-        nombre_archivo = f'documents/documento_pagina_{pagina}_numero_{indice_en_pagina + 1}.pdf'
-        ruta = os.path.join(nombre_archivo)
-        with open(nombre_archivo, 'wb') as f:
+        # Apply the naming you requested: page enumeration and page enumeration
+        destination_folder = 'documents'
+        os.makedirs(destination_folder, exist_ok=True)
+        file_name = f'documents/document_page_{current_page}_number_{page_index + 1}.pdf'
+        path = os.path.join(file_name)
+        with open(file_name, 'wb') as f:
             f.write(response.body)
             
-        self.log(f'¡ÉXITO! Archivo guardado: {nombre_archivo}')
+        self.log(f'✓ SUCCESS! File saved: {file_name}')
         
-        # 3. ENVIAR MENSAJE A KAFKA
-        mensaje = {
-            "archivo": nombre_archivo,
-            "ruta":ruta,
-            "pagina_web": pagina,
-            "estado": "descargado"
+        # 3. SEND MESSAGE TO KAFKA
+        message = {
+            "file": file_name,
+            "path": path,
+            "web_page": current_page,
+            "status": "downloaded"
         }
         
-        # Convertimos el diccionario a JSON y lo enviamos
-        self.producer.produce(self.topic, value=json.dumps(mensaje).encode('utf-8'))
-        self.producer.poll(0) # Libera la cola de mensajes
+        # Convert dictionary to JSON and send it
+        self.producer.produce(self.topic, value=json.dumps(message).encode('utf-8'))
+        self.producer.poll(0) # Release message queue
         
-        # LA NUEVA LÓGICA DE RELEVOS:
-        if indice_en_pagina < self.total_documentos:
-            # Si aún no llegamos al documento 50, pedimos el siguiente de esta misma página
-            siguiente_indice = indice_en_pagina + 1
-            yield from self.descargar_documento(pagina_actual=pagina, indice_en_pagina=siguiente_indice, view_state=view_state)
+        # NEW RELAY LOGIC:
+        if page_index < self.total_documents:
+            # If we haven't reached document 50 yet, request next one from same page
+            next_index = page_index + 1
+            yield from self.download_document(current_page=current_page, page_index=next_index, view_state=view_state)
             
-        elif pagina < self.total_paginas - 1:
-            # Si ya descargamos los 50 y aún quedan páginas, cambiamos de página
-            siguiente_pagina = pagina + 1
-            self.log(f'--- Todos los documentos listos. Navegando a la página {siguiente_pagina} ---')
+        elif current_page < self.total_pages - 1:
+            # If we've downloaded 50 and there are more pages, change page
+            next_page = current_page + 1
+            self.log(f'--- All documents ready. Navigating to page {next_page} ---')
             
-            datos_paginacion = {
+            pagination_data = {
                 'javax.faces.partial.ajax': 'true',
                 'javax.faces.source': 'formResumen:dataTableResumen',
                 'javax.faces.partial.execute': 'formResumen:dataTableResumen',
                 'javax.faces.partial.render': 'formResumen:dataTableResumen',
                 'formResumen:dataTableResumen': 'formResumen:dataTableResumen',
                 'formResumen:dataTableResumen_pagination': 'true',
-                'formResumen:dataTableResumen_first': str(siguiente_pagina * 50),
+                'formResumen:dataTableResumen_first': str(next_page * 50),
                 'formResumen:dataTableResumen_rows': '50',
                 'formResumen:dataTableResumen_encodeFeature': 'true',
                 'formResumen': 'formResumen',
@@ -118,21 +118,21 @@ class CongresoSpider(scrapy.Spider):
             
             yield scrapy.FormRequest(
                 url=self.start_urls[0],
-                formdata=datos_paginacion,
-                callback=self.procesar_cambio_pagina,
-                meta={'pagina_siguiente': siguiente_pagina},
+                formdata=pagination_data,
+                callback=self.process_page_change,
+                meta={'next_page': next_page},
                 dont_filter=True
             )
 
-    def procesar_cambio_pagina(self, response):
-        pagina_siguiente = response.meta['pagina_siguiente']
+    def process_page_change(self, response):
+        next_page = response.meta['next_page']
         match = re.search(r'id="[^"]*ViewState[^"]*"><!\[CDATA\[(.*?)\]\]>', response.text)
         
         if match:
-            nuevo_view_state = match.group(1)
-            self.log(f'Cambio de página exitoso. Nuevo ViewState capturado.')
+            new_view_state = match.group(1)
+            self.log(f'Page change successful. New ViewState captured.')
             
-            # Iniciamos la descarga en la nueva página, volviendo a empezar desde el documento 0
-            yield from self.descargar_documento(pagina_actual=pagina_siguiente, indice_en_pagina=0, view_state=nuevo_view_state)
+            # Start downloading on new page, going back to start from document 0
+            yield from self.download_document(current_page=next_page, page_index=0, view_state=new_view_state)
         else:
-            self.log('Error fatal: No pudimos encontrar el ViewState en la respuesta de la página nueva.')
+            self.log('Fatal error: Could not find ViewState in new page response.')

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Veeduría Congreso Colombia",
+  title: "Congress Oversight Colombia",
   description:
-    "Plataforma ciudadana para vigilar las leyes y decisiones del Congreso de Colombia.",
+    "Civic platform to monitor laws and decisions from the Colombian Congress.",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -47,19 +47,19 @@ export default function RootLayout({
                 className="text-xl font-bold tracking-tight"
                 style={{ color: "var(--text-primary)" }}
               >
-                Veeduría{" "}
-                <span style={{ color: "var(--accent)" }}>Congreso</span>
+                Congress{" "}
+                <span style={{ color: "var(--accent)" }}>Oversight</span>
               </span>
             </div>
             <nav className="hidden md:flex items-center gap-6 text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
               <a href="/" className="hover:text-white transition-colors">
-                Leyes
+                Laws
               </a>
               <a href="#" className="hover:text-white transition-colors">
-                Senadores
+                Senators
               </a>
               <a href="#" className="hover:text-white transition-colors">
-                Estadísticas
+                Statistics
               </a>
             </nav>
           </div>
@@ -76,7 +76,7 @@ export default function RootLayout({
             color: "var(--text-secondary)",
           }}
         >
-          Veeduría Congreso Colombia — Datos públicos con fines ciudadanos.
+          Congress Oversight Colombia — Public data for civic purposes.
         </footer>
       </body>
     </html>

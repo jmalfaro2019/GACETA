@@ -6,20 +6,20 @@ from marker.models import create_model_dict
 from marker.config.parser import ConfigParser
 from marker.output import text_from_rendered
 
-# 1. Tu API Key de Gemini (¡Reemplázala con la tuya!)
-# Esto le permite a Marker usar IA en la nube para leer imágenes y tablas
+# 1. Your Gemini API Key (Replace with yours!)
+# This allows Marker to use AI in the cloud to read images and tables
 os.environ["GEMINI_API_KEY"] = "AIzaSyDy-3P4mrOKK2JKX_Opfy0Xx-MAgBGd4kE" 
 
-# 2. Configuración de Marker
+# 2. Marker Configuration
 config = {
     "output_format": "markdown",
-    "use_llm": True, # Activa el uso de IA para tablas/imágenes
-    "llm_service": "marker.services.gemini.GoogleGeminiService" # Usa Gemini
+    "use_llm": True, # Enable AI usage for tables/images
+    "llm_service": "marker.services.gemini.GoogleGeminiService" # Use Gemini
 }
 config_parser = ConfigParser(config)
 
-# 3. Inicializar el convertidor
-print("Cargando modelo de Marker (esto es rápido)...")
+# 3. Initialize the converter
+print("Loading Marker model (this is fast)...")
 converter = PdfConverter(
     config=config_parser.generate_config_dict(),
     artifact_dict=create_model_dict(),
@@ -28,65 +28,65 @@ converter = PdfConverter(
     llm_service=config_parser.get_llm_service()
 )
 
-# 4. Configurar Kafka
-configuracion_kafka = {
+# 4. Configure Kafka
+kafka_config = {
     'bootstrap.servers': 'localhost:9092',
-    'group.id': 'grupo_procesadores_marker_v1', 
+    'group.id': 'marker_processors_group_v1', 
     'auto.offset.reset': 'latest'
 }
 
-consumidor = Consumer(configuracion_kafka)
-consumidor.subscribe(['gacetas_nuevas'])
+consumer = Consumer(kafka_config)
+consumer.subscribe(['new_gazettes'])
 
-# Crear carpeta de resultados
-os.makedirs("documentos_markdown", exist_ok=True)
-print("¡Worker de Marker listo! Esperando PDFs...\n")
+# Create results folder
+os.makedirs("documents_markdown", exist_ok=True)
+print("✓ Marker Worker ready! Waiting for PDFs...\n")
 
 try:
     while True:
-        mensaje = consumidor.poll(1.0)
+        message = consumer.poll(1.0)
 
-        if mensaje is None:
+        if message is None:
             continue
             
-        if mensaje.error():
-            print(f"Error de Kafka: {mensaje.error()}")
+        if message.error():
+            print(f"Kafka error: {message.error()}")
             continue
 
-        datos = json.loads(mensaje.value().decode('utf-8'))
+        data = json.loads(message.value().decode('utf-8'))
         
-        if 'ruta' not in datos:
+        if 'path' not in data:
             continue
 
-        ruta_pdf_original = datos['ruta']
-        solo_nombre = os.path.basename(datos['archivo']) 
-        nombre_base = solo_nombre.replace('.pdf', '')
+        original_pdf_path = data['path']
+        file_name_only = os.path.basename(data['file']) 
+        base_name = file_name_only.replace('.pdf', '')
         
-        # Ruta real del PDF
-        ruta_pdf_real = os.path.normpath(os.path.join("..", "gaceta_bot", ruta_pdf_original))
+        # Real path to the PDF
+        real_pdf_path = os.path.normpath(os.path.join("..", "gaceta_bot", original_pdf_path))
         
-        print(f"📥 Procesando con Marker: {solo_nombre}")
+        print(f"📥 Processing with Marker: {file_name_only}")
 
         try:
-            # 5. La conversión con Marker
-            rendered = converter(ruta_pdf_real)
-            texto_markdown, _, imagenes = text_from_rendered(rendered)
+            # 5. Conversion with Marker
+            rendered = converter(real_pdf_path)
+            markdown_text, _, images = text_from_rendered(rendered)
             
-            # Guardar el Markdown
-            ruta_md = os.path.normpath(os.path.join("documentos_markdown", f"{nombre_base}.md"))
-            with open(ruta_md, "w", encoding="utf-8") as f:
-                f.write(texto_markdown)
+            # Save the Markdown
+            md_path = os.path.normpath(os.path.join("documents_markdown", f"{base_name}.md"))
+            with open(md_path, "w", encoding="utf-8") as f:
+                f.write(markdown_text)
                 
-            # Opcional: Guardar las imágenes extraídas
-            if imagenes:
-                print(f"   📸 Se encontraron {len(imagenes)} imágenes. (Puedes configurar para guardarlas).")
+            # Optional: Save extracted images
+            if images:
+                print(f"   📸 Found {len(images)} images. (You can configure to save them).")
                 
-            print(f"✅ ¡Éxito! Guardado en: {ruta_md}\n")
+            print(f"✅ Success! Saved at: {md_path}\n")
             
         except Exception as e:
-            print(f"❌ Error convirtiendo: {e}\n")
+            print(f"❌ Error converting: {e}\n")
 
 except KeyboardInterrupt:
-    print("Apagando el Worker...")
+    print("Shutting down Worker...")
 finally:
-    consumidor.close()
+    consumer.close()

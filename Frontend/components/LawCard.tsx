@@ -28,7 +28,7 @@ const STATUS_STYLES: Record<string, { bg: string; text: string; dot: string }> =
     },
   };
 
-const PARTIDO_COLORS: Record<string, string> = {
+const PARTY_COLORS: Record<string, string> = {
   purple: "#a78bfa",
   red: "#f87171",
   orange: "#fb923c",
@@ -37,13 +37,13 @@ const PARTIDO_COLORS: Record<string, string> = {
 };
 
 export default function LawCard({ law }: { law: Law }) {
-  const status = STATUS_STYLES[law.estadoColor] ?? STATUS_STYLES.gray;
-  const partidoColor =
-    PARTIDO_COLORS[law.partidoColor] ?? PARTIDO_COLORS.gray;
+  const status = STATUS_STYLES[law.statusColor] ?? STATUS_STYLES.gray;
+  const partyColor =
+    PARTY_COLORS[law.partyColor] ?? PARTY_COLORS.gray;
 
-  const total = law.votacion.favor + law.votacion.contra + law.votacion.abstenciones;
-  const favorPct = Math.round((law.votacion.favor / total) * 100);
-  const contraPct = Math.round((law.votacion.contra / total) * 100);
+  const total = law.voting.favor + law.voting.against + law.voting.abstentions;
+  const favorPct = Math.round((law.voting.favor / total) * 100);
+  const againstPct = Math.round((law.voting.against / total) * 100);
 
   return (
     <article
@@ -63,13 +63,13 @@ export default function LawCard({ law }: { law: Law }) {
             className="w-1.5 h-1.5 rounded-full"
             style={{ backgroundColor: status.dot }}
           />
-          {law.estado}
+          {law.status}
         </span>
         <span
           className="text-xs"
           style={{ color: "var(--text-secondary)" }}
         >
-          Rad. {new Date(law.fechaRadicacion).toLocaleDateString("es-CO")}
+          Filed {new Date(law.filingDate).toLocaleDateString("en-US")}
         </span>
       </div>
 
@@ -78,7 +78,7 @@ export default function LawCard({ law }: { law: Law }) {
         className="text-base font-semibold leading-snug group-hover:text-blue-400 transition-colors"
         style={{ color: "var(--text-primary)" }}
       >
-        {law.titulo}
+        {law.title}
       </h2>
 
       {/* Description */}
@@ -86,21 +86,21 @@ export default function LawCard({ law }: { law: Law }) {
         className="text-sm leading-relaxed line-clamp-2"
         style={{ color: "var(--text-secondary)" }}
       >
-        {law.descripcion}
+        {law.description}
       </p>
 
       {/* Author & Party */}
       <div className="flex items-center gap-4 text-xs" style={{ color: "var(--text-secondary)" }}>
         <span className="flex items-center gap-1.5">
           <User size={13} />
-          {law.autor}
+          {law.author}
         </span>
         <span
           className="flex items-center gap-1.5 font-medium"
-          style={{ color: partidoColor }}
+          style={{ color: partyColor }}
         >
           <Building2 size={13} />
-          {law.partido}
+          {law.party}
         </span>
       </div>
 
@@ -113,12 +113,12 @@ export default function LawCard({ law }: { law: Law }) {
           />
           <div
             className="bg-red-500 transition-all"
-            style={{ width: `${contraPct}%` }}
+            style={{ width: `${againstPct}%` }}
           />
         </div>
         <div className="flex justify-between text-xs" style={{ color: "var(--text-secondary)" }}>
-          <span className="text-green-400">{law.votacion.favor} a favor</span>
-          <span className="text-red-400">{law.votacion.contra} en contra</span>
+          <span className="text-green-400">{law.voting.favor} in favor</span>
+          <span className="text-red-400">{law.voting.against} against</span>
         </div>
       </div>
 
@@ -131,7 +131,7 @@ export default function LawCard({ law }: { law: Law }) {
           color: "var(--accent)",
         }}
       >
-        Ver detalles
+        View details
         <ArrowRight size={15} />
       </Link>
     </article>
