@@ -1,0 +1,11 @@
+XQ27gFaWRgW-9n2Q1eG5KQ
+.\bin\windows\kafka-storage.bat format -t XQ27gFaWRgW-9n2Q1eG5KQ -c .\config\kraft\server.properties
+
+.\bin\windows\kafka-server-start.bat .\config\kraft\server.properties
+
+.\bin\windows\kafka-topics.bat --create --topic test --bootstrap-server localhost:9092 -- partitions 1 --replication-factor 1
+
+.\bin\windows\kafka-console-producer.bat --topic gacetas_nuevas --bootstrap-server localhost:9092
+
+.\bin\windows\kafka-console-consumer.bat --topic gacetas_nuevas --from-beginning --bootstrap-server localhost:9092
+
