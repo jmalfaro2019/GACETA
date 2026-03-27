@@ -1,5 +1,6 @@
 import json
 import os
+from dotenv import load_dotenv
 from confluent_kafka import Consumer
 from marker.converters.pdf import PdfConverter
 from marker.models import create_model_dict
@@ -8,7 +9,9 @@ from marker.output import text_from_rendered
 
 # 1. Your Gemini API Key (Replace with yours!)
 # This allows Marker to use AI in the cloud to read images and tables
-os.environ["GEMINI_API_KEY"] = "AIzaSyDy-3P4mrOKK2JKX_Opfy0Xx-MAgBGd4kE" 
+load_dotenv()
+api_key_gemini = os.getenv('API_KEY')
+os.environ["GEMINI_API_KEY"] = api_key_gemini
 
 # 2. Marker Configuration
 config = {
