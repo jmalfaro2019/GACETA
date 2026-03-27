@@ -5,8 +5,16 @@ lxml==4.9.4
 # Apache Kafka - Message Streaming
 confluent-kafka==2.3.0
 
-# PDF Document Processing
-marker-pdf==0.3.9
+# PDF Text Extraction & OCR
+pdfplumber==0.10.3
+PyMuPDF==1.23.8  # fitz library for PDF processing
+easyocr==1.7.0
+torch==2.1.0  # Required for EasyOCR
+torchvision==0.16.0  # Computer vision library for EasyOCR
+numpy==1.24.3
+
+# Image Processing
+Pillow==10.0.0
 
 # Environment Variables Management
 python-dotenv==1.0.0

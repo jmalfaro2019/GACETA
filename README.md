@@ -107,11 +107,26 @@ GACETA/
 
 See [requirements.txt](requirements.txt) for detailed package versions.
 
-Key libraries:
-- `scrapy`: Web scraping framework
-- `confluent-kafka`: Kafka message streaming
-- `marker-pdf`: PDF text extraction
+### Key Libraries
+
+**Data Collection:**
+- `scrapy`: Web scraping framework for downloading legislative documents
+- `requests`: HTTP requests library
+
+**PDF Processing & OCR:**
+- `pdfplumber`: Advanced table and structured data extraction from PDFs
+- `PyMuPDF` (fitz): Fast PDF parsing and content extraction
+- `easyocr`: Optical Character Recognition (OCR) for text in images and scanned documents
+- `torch` & `torchvision`: Deep learning libraries that power EasyOCR
+- `numpy`: Numerical computing library
+- `Pillow`: Image processing library
+
+**Message Processing:**
+- `confluent-kafka`: Kafka consumer for distributed document processing
+
+**Utilities:**
 - `python-dotenv`: Environment variable management
+- `python-json-logger`: JSON logging for debugging
 
 ## License
 
