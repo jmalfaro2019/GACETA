@@ -24,7 +24,8 @@ reader = easyocr.Reader(['es', 'en'], gpu=use_gpu)
 kafka_config = {
     'bootstrap.servers': 'localhost:9092',
     'group.id': 'pdf_processors_group_v4',
-    'auto.offset.reset': 'latest'
+    'auto.offset.reset': 'latest',
+    'max.poll.interval.ms': 900000 # 15 minutos de tolerancia para el OCR lento
 }
 
 consumer = Consumer(kafka_config)
@@ -123,11 +124,38 @@ def process_pdf_master(pdf_path):
                 print(f"      ⚠️ Image warning on page {page_num + 1}: {e}")
         print(f"    ✅ Images ready.")
 
-        # 3. TEXT
+        # 3. TEXT (Lógica de PyMuPDF restaurada)
         print(f"    ⏳ Extracting normal text...")
-        # ... (The same block-processing code you already have continues here) ...
+        blocks = page_fitz.get_text("blocks", sort=True)
+        normal_text_pieces = []
         
+        for b in blocks:
+            block_bbox = (b[0], b[1], b[2], b[3])
+            block_text = b[4]
+            block_type = b[6] # 0 es texto, 1 es imagen
+            
+            if block_type == 0:
+                is_inside_table = False
+                for t_box in table_bboxes:
+                    if boxes_intersect(block_bbox, t_box):
+                        is_inside_table = True
+                        break
+                
+                if not is_inside_table:
+                    normal_text_pieces.append(block_text)
+                    
+        if normal_text_pieces:
+            page_content.insert(0, "\n\n".join(normal_text_pieces))
+            
+        full_text.append(f"## Page {page_num + 1}\n\n" + "\n".join(page_content) + "\n")
         print(f"    ✅ Text ready.")
+        
+    doc_fitz.close()
+    pdf_plumb.close()
+    
+    # ¡ESTO ERA LO QUE FALTABA! Retornar el texto final compilado.
+    return "\n---\n".join(full_text)
+
 
 # Kafka main loop
 try:
@@ -148,7 +176,7 @@ try:
         base_name = file_name_only.replace('.pdf', '')
         real_pdf_path = os.path.normpath(os.path.join("..", "gaceta_bot", original_pdf_path))
         
-        print(f"📥 Processing: {file_name_only}")
+        print(f"\n📥 Processing: {file_name_only}")
 
         try:
             markdown_text = process_pdf_master(real_pdf_path)
