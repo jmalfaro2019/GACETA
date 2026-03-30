@@ -7,10 +7,10 @@ confluent-kafka==2.3.0
 
 # PDF Text Extraction & OCR
 pdfplumber==0.10.3
-PyMuPDF==1.23.8  # fitz library for PDF processing
+PyMuPDF==1.23.8
 easyocr==1.7.0
-torch==2.1.0  # Required for EasyOCR
-torchvision==0.16.0  # Computer vision library for EasyOCR
+torch==2.1.0
+torchvision==0.16.0
 numpy==1.24.3
 
 # Image Processing
@@ -21,6 +21,3 @@ python-dotenv==1.0.0
 
 # HTTP Library for API Requests
 requests==2.31.0
-
-# Logging and Debugging
-python-json-logger==2.0.7
