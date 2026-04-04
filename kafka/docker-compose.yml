@@ -30,3 +30,18 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+  paradedb:
+    image: paradedb/paradedb:latest
+    container_name: paradedb
+    ports:
+      - "5433:5432"  # (On garde le port que tu as modifié !)
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=gaceta_db
+    volumes:
+      - paradedb_data_v2:/var/lib/postgresql  # <-- Le chemin a changé ici !
+
+# --- Tout en bas de ton fichier ---
+volumes:
+  paradedb_data_v2:  # <-- Le nom a changé ici !

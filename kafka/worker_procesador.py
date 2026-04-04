@@ -8,7 +8,7 @@ import fitz  # For columns and images
 import pdfplumber  # The table expert
 import io
 from PIL import Image
-
+import psycopg2
 
 def table_to_markdown(table_data):
     if not table_data or not table_data[0]:
@@ -150,6 +150,7 @@ consumer.subscribe([os.getenv('TOPIC', 'new_gazettes')])
 os.makedirs("documents_markdown", exist_ok=True)
 print("Master hybrid worker (PDFPlumber + PyMuPDF + EasyOCR) ready!\n")
 
+
 # Kafka main loop
 try:
     while True:
@@ -172,11 +173,46 @@ try:
         print(f"Processing: {file_name_only}")
 
         try:
+            # 1. Extraction du texte
             markdown_text = process_pdf_master(real_pdf_path)
+            
+            # 2. Sauvegarde dans un fichier local (ton code d'origine)
             md_path = os.path.normpath(os.path.join("documents_markdown", f"{base_name}.md"))
             with open(md_path, "w", encoding="utf-8") as f:
                 f.write(markdown_text)
             print(f"Success! Saved to: {md_path}")
+            
+            # ---------------------------------------------------------
+            # 3. INSERTION DANS PARADEDB (NOUVEAU CODE)
+            # ---------------------------------------------------------
+            try:
+                # On ouvre la connexion
+                conn = psycopg2.connect(
+                    dbname="gaceta_db",
+                    user="admin",
+                    password="secret",
+                    host="localhost",
+                    port="5433"
+                )
+                cursor = conn.cursor()
+
+                # On insère le titre (base_name) et le contenu
+                insert_query = """
+                    INSERT INTO documents (titre, contenu_markdown)
+                    VALUES (%s, %s);
+                """
+                cursor.execute(insert_query, (base_name, markdown_text))
+                
+                # On valide et on ferme
+                conn.commit()
+                cursor.close()
+                conn.close()
+                print(f"Success! Inserted '{base_name}' into ParadeDB.")
+                
+            except Exception as db_error:
+                print(f"Database error while inserting '{base_name}': {db_error}")
+            # ---------------------------------------------------------
+
         except Exception as e:
             print(f"Error converting: {e}")
 
