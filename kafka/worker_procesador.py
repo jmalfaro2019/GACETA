@@ -9,6 +9,7 @@ import pdfplumber  # The table expert
 import io
 from PIL import Image
 import psycopg2
+from groq_parser import parse_markdown_to_json
 
 def table_to_markdown(table_data):
     if not table_data or not table_data[0]:
@@ -176,11 +177,18 @@ try:
             # 1. Extraction du texte
             markdown_text = process_pdf_master(real_pdf_path)
             
+            # 2. AI Processing (Groq)
+            print(f"Sending '{base_name}' to Groq for parsing...")
+            structured_data = parse_markdown_to_json(markdown_text)
+            
+            # 3. Sauvegarde dans un fichier local 
+            json_path = os.path.normpath(os.path.join("documents_json", f"{base_name}.json"))
+            os.makedirs(os.path.dirname(json_path), exist_ok=True)
+            
             # 2. Sauvegarde dans un fichier local (ton code d'origine)
-            md_path = os.path.normpath(os.path.join("documents_markdown", f"{base_name}.md"))
-            with open(md_path, "w", encoding="utf-8") as f:
-                f.write(markdown_text)
-            print(f"Success! Saved to: {md_path}")
+            with open(json_path, "w", encoding="utf-8") as f:
+                json.dump(structured_data, f, ensure_ascii=False, indent=4)
+                print(f"Success! Saved structured JSON to: {json_path}")
             
             # ---------------------------------------------------------
             # 3. INSERTION DANS PARADEDB (NOUVEAU CODE)
@@ -195,13 +203,15 @@ try:
                     port="5433"
                 )
                 cursor = conn.cursor()
-
+                
+                # Convertimos el diccionario a un string JSON para guardarlo en la DB
+                json_para_db = json.dumps(structured_data)
                 # On insère le titre (base_name) et le contenu
                 insert_query = """
-                    INSERT INTO documents (titre, contenu_markdown)
+                    INSERT INTO documents (titre, contenu_json)
                     VALUES (%s, %s);
                 """
-                cursor.execute(insert_query, (base_name, markdown_text))
+                cursor.execute(insert_query, (base_name, json_para_db))
                 
                 # On valide et on ferme
                 conn.commit()

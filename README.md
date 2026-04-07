@@ -73,13 +73,13 @@ CREATE EXTENSION IF NOT EXISTS pg_search;
 CREATE TABLE documents (
     id SERIAL PRIMARY KEY,
     titre VARCHAR(255),
-    contenu_markdown TEXT,
+    contenu_json TEXT,
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 3. Create the BM25 full-text search index
 CREATE INDEX recherche_documents_idx 
-ON documents USING bm25 (id, titre, contenu_markdown) 
+ON documents USING bm25 (id, titre, contenu_json) 
 WITH (key_field='id');
 ```
 
