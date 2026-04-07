@@ -24,3 +24,6 @@ requests==2.31.0
 
 #for database
 psycopg2-binary==2.9.11
+
+#ia groq
+groq
