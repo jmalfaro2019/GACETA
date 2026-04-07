@@ -108,6 +108,8 @@ Create a `.env` file in the project root if needed:
 KAFKA_BOOTSTRAP_SERVERS=localhost:9092
 TOPIC=new_gazettes
 GROUP_ID=pdf_processors_group_v4
+
+GROQ_API_KEY="YOUR API KEY DE GROQ"
 ```
 
 ### Step 6: Start the Document Processor
