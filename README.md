@@ -4,7 +4,7 @@ An automated system for extracting, processing, and analyzing legislative docume
 
 ## Description
 
-This project consists of four main components:
+This project consists of four main compoVnents:
 
 1. **Frontend** (Next.js/React): Web interface for viewing and querying laws and legislative projects.
 2. **Gaceta Bot** (Scrapy): Web scraper for extracting legislative documents.
@@ -67,20 +67,23 @@ In DBeaver, right-click on your new connection, open a **SQL Editor**, and execu
 
 ```sql
 -- 1. Enable the ParadeDB search extension
+-- 1. Habilitar la extensión de búsqueda de ParadeDB
 CREATE EXTENSION IF NOT EXISTS pg_search;
 
--- 2. Create the documents table
+-- 2. Crear la tabla de documentos (ajustada a JSONB)
 CREATE TABLE documents (
     id SERIAL PRIMARY KEY,
-    titre VARCHAR(255),
-    contenu_json TEXT,
+    titre VARCHAR(255) NOT NULL,
+    contenu_json JSONB, -- Cambiado de TEXT a JSONB
     date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- 3. Create the BM25 full-text search index
+-- 3. Crear el índice de búsqueda BM25
+-- ParadeDB indexará automáticamente el texto dentro del JSONB
 CREATE INDEX recherche_documents_idx 
 ON documents USING bm25 (id, titre, contenu_json) 
 WITH (key_field='id');
+
 ```
 
 ### Step 4: Set Up Python Environment

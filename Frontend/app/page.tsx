@@ -1,8 +1,15 @@
 import laws from "@/data/laws";
 import LawCard from "@/components/LawCard";
-import { Scale, Users, Activity } from "lucide-react";
+import RealLawCard from "@/components/RealLawCard";
+import prisma from "@/lib/prisma";
+import { Scale, Users, Activity, Sparkles } from "lucide-react";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const realDocuments = await prisma.document.findMany({
+    take: 2,
+    orderBy: { date_creation: "desc" },
+  });
+
   const totals = laws.reduce(
     (acc, l) => ({
       favor: acc.favor + l.voting.favor,
@@ -76,6 +83,25 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Real Documents Section */}
+      {realDocuments.length > 0 && (
+        <section className="mb-12">
+          <div className="flex items-center gap-2 mb-6">
+            <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">
+              <Sparkles size={18} />
+            </div>
+            <h2 className="text-xl font-bold text-white">
+              Recently Analyzed (Live Data)
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {realDocuments.map((doc) => (
+              <RealLawCard key={doc.id} document={doc} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Law list */}
       <section>

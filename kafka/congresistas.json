@@ -1,0 +1,1598 @@
+[
+  {
+    "nombre": "Mónica Karina Bocanegra Pantoja",
+    "corporacion": "CÁMARA",
+    "departamento": "Amazonas",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Orlando Rayo Acosta",
+    "corporacion": "CÁMARA",
+    "departamento": "Amazonas",
+    "partido_politico": "La Voz del Amazonas"
+  },
+  {
+    "nombre": "Andrés Felipe Guerra Hoyos",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "José Gregorio Orjuela Pérez",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Melissa Orrego Eusse",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Óscar Darío Pérez Pineda",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Ana Ligia Mora Martínez",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Juan David Zuluaga Zuluaga",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Jhon Jairo Berrío López",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Hernán Muriel Pérez",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Luz Verónica Estrada Holguín",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "David Alejandro Toro Ramírez",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Camilo Andrés Gómez Mosquera",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Diver Ney Franco Tejada",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Luis Guillermo Patiño Aristizabal",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Creemos"
+  },
+  {
+    "nombre": "Simón Molina Gómez",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Creemos"
+  },
+  {
+    "nombre": "Jaime Alonso Cano Ramírez",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Luis Miguel López Aristizábal",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Nataly Vélez Lopera",
+    "corporacion": "CÁMARA",
+    "departamento": "Antioquia",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "Germán Rogelio Rozo Anis",
+    "corporacion": "CÁMARA",
+    "departamento": "Arauca",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "José Trinidad Sierra Sierra",
+    "corporacion": "CÁMARA",
+    "departamento": "Arauca",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Estefanel Gutiérrez Pérez",
+    "corporacion": "CÁMARA",
+    "departamento": "Atlántico",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "Welfran Junior Mendoza Torres",
+    "corporacion": "CÁMARA",
+    "departamento": "Atlántico",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "Samir Eduardo Radi Chemas",
+    "corporacion": "CÁMARA",
+    "departamento": "Atlántico",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "Jaime Arturo Santamaría Acosta",
+    "corporacion": "CÁMARA",
+    "departamento": "Atlántico",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Andrea Camila Vargas De la Hoz",
+    "corporacion": "CÁMARA",
+    "departamento": "Atlántico",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Jezmi Lizeth Barraza Arraut",
+    "corporacion": "CÁMARA",
+    "departamento": "Atlántico",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "César Antonio Barrera Vergara",
+    "corporacion": "CÁMARA",
+    "departamento": "Atlántico",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "María Fernanda Carrascal Rojas",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Laura Daniela Beltrán Palomares",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "María del Mar Pizarro García",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Daniel Mauricio Monroy Hernández",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Heráclito Ladinez Suárez",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Claudia Teresa Romero Nader",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Jairo León Vargas",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Gabriel Becerra Yáñez",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Daniel Felipe Briceño Montes",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "José Jaime Uscátegui Pastrana",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Nelly Patricia Mosquera Murcia",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "David Gerardo Cote Rodríguez",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Luz Marina Gordillo Salinas",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Josías Fiesco Agudelo",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Catherine Juvinao Clavijo",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Alianza Verde"
+  },
+  {
+    "nombre": "Mauricio Andrés Toro Orjuela",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Alianza Verde"
+  },
+  {
+    "nombre": "Carol Stefanny Borda Acevedo",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Salvación Nacional"
+  },
+  {
+    "nombre": "Bleidy del Carmen Pérez Ballestas",
+    "corporacion": "CÁMARA",
+    "departamento": "Bogotá D.C.",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "María Camila Salas Salas",
+    "corporacion": "CÁMARA",
+    "departamento": "Bolívar",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Juliana Aray Franco",
+    "corporacion": "CÁMARA",
+    "departamento": "Bolívar",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Andrés Guillermo Montes Celedón",
+    "corporacion": "CÁMARA",
+    "departamento": "Bolívar",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Yolanda Wong Baldiris",
+    "corporacion": "CÁMARA",
+    "departamento": "Bolívar",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Amaury Julio Peréz",
+    "corporacion": "CÁMARA",
+    "departamento": "Bolívar",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "José Ricardo Ardila Pinedo",
+    "corporacion": "CÁMARA",
+    "departamento": "Bolívar",
+    "partido_politico": "Centro Democrático – MIRA"
+  },
+  {
+    "nombre": "Yamit Noé Hurtado Neira",
+    "corporacion": "CÁMARA",
+    "departamento": "Boyacá",
+    "partido_politico": "Alianza Verde"
+  },
+  {
+    "nombre": "Jaime Raúl Salamanca Torres",
+    "corporacion": "CÁMARA",
+    "departamento": "Boyacá",
+    "partido_politico": "Alianza Verde"
+  },
+  {
+    "nombre": "José Luis Bohórquez López",
+    "corporacion": "CÁMARA",
+    "departamento": "Boyacá",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Eduar Alexis Triana Rincón",
+    "corporacion": "CÁMARA",
+    "departamento": "Boyacá",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Ingrid Marlen Sogamoso Alfonso",
+    "corporacion": "CÁMARA",
+    "departamento": "Boyacá",
+    "partido_politico": "Partido Conservador – Salvación Nacional"
+  },
+  {
+    "nombre": "Héctor David Chaparro Chaparro",
+    "corporacion": "CÁMARA",
+    "departamento": "Boyacá",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Santiago Osorio Marín",
+    "corporacion": "CÁMARA",
+    "departamento": "Caldas",
+    "partido_politico": "Pacto Histórico – Alianza Verde"
+  },
+  {
+    "nombre": "Erika Milena Muñoz Villareal",
+    "corporacion": "CÁMARA",
+    "departamento": "Caldas",
+    "partido_politico": "Pacto Histórico – Alianza Verde"
+  },
+  {
+    "nombre": "José Octavio Cardona León",
+    "corporacion": "CÁMARA",
+    "departamento": "Caldas",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Manuel Orlando Correa Bedoya",
+    "corporacion": "CÁMARA",
+    "departamento": "Caldas",
+    "partido_politico": "Partido ASI"
+  },
+  {
+    "nombre": "Juan Manuel Londoño Jaramillo",
+    "corporacion": "CÁMARA",
+    "departamento": "Caldas",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Juan Pablo Duque Gonzaléz",
+    "corporacion": "CÁMARA",
+    "departamento": "Caquetá",
+    "partido_politico": "Coalición Caquetá"
+  },
+  {
+    "nombre": "Leonardo Ramón Ramírez",
+    "corporacion": "CÁMARA",
+    "departamento": "Caquetá",
+    "partido_politico": "Cambio Radical – MIRA"
+  },
+  {
+    "nombre": "Arledy Alvarado Patiño",
+    "corporacion": "CÁMARA",
+    "departamento": "Casanare",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Diego Fernando García Alfonso",
+    "corporacion": "CÁMARA",
+    "departamento": "Casanare",
+    "partido_politico": "Alianza Verde"
+  },
+  {
+    "nombre": "Jorge Hernán Bastidas Rosero",
+    "corporacion": "CÁMARA",
+    "departamento": "Cauca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Luz Mirian Moncayo",
+    "corporacion": "CÁMARA",
+    "departamento": "Cauca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Edgar Gómez Castillo",
+    "corporacion": "CÁMARA",
+    "departamento": "Cauca",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Víctor Andrés Armero Hernández",
+    "corporacion": "CÁMARA",
+    "departamento": "Cauca",
+    "partido_politico": "Fuerza Cauca"
+  },
+  {
+    "nombre": "Alexandra Pineda Ortiz",
+    "corporacion": "CÁMARA",
+    "departamento": "Cesar",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Mello Castro González",
+    "corporacion": "CÁMARA",
+    "departamento": "Cesar",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Alfredo Ape Cuello Baute",
+    "corporacion": "CÁMARA",
+    "departamento": "Cesar",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Omar Francisco Vidal Rojas",
+    "corporacion": "CÁMARA",
+    "departamento": "Chocó",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Sandra Tatiana Palacios Maturana",
+    "corporacion": "CÁMARA",
+    "departamento": "Chocó",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Juan David Rangel Yanez",
+    "corporacion": "CÁMARA",
+    "departamento": "Córdoba",
+    "partido_politico": "Primero Córdoba"
+  },
+  {
+    "nombre": "Martha Isabel Ruiz Solera",
+    "corporacion": "CÁMARA",
+    "departamento": "Córdoba",
+    "partido_politico": "Primero Córdoba"
+  },
+  {
+    "nombre": "Nicolás Barguil Cubillos",
+    "corporacion": "CÁMARA",
+    "departamento": "Córdoba",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Luis Fernando Ballesteros",
+    "corporacion": "CÁMARA",
+    "departamento": "Córdoba",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "José Luis Abdala Olivera",
+    "corporacion": "CÁMARA",
+    "departamento": "Córdoba",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "Heiner de Jesús Gaitán Parra",
+    "corporacion": "CÁMARA",
+    "departamento": "Cundinamarca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Francy Natalia Moreno Puin",
+    "corporacion": "CÁMARA",
+    "departamento": "Cundinamarca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Yeisson Gerardo Sua Cajamarca Zapata",
+    "corporacion": "CÁMARA",
+    "departamento": "Cundinamarca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Hilda Gutiérrez",
+    "corporacion": "CÁMARA",
+    "departamento": "Cundinamarca",
+    "partido_politico": "Centro Democrático – MIRA"
+  },
+  {
+    "nombre": "Dania Maritza Álvarez Barrera",
+    "corporacion": "CÁMARA",
+    "departamento": "Cundinamarca",
+    "partido_politico": "Centro Democrático – MIRA"
+  },
+  {
+    "nombre": "Julio Roberto Salazar Perdomo",
+    "corporacion": "CÁMARA",
+    "departamento": "Cundinamarca",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Daniel Felipe Bernal Montealegre",
+    "corporacion": "CÁMARA",
+    "departamento": "Cundinamarca",
+    "partido_politico": "Partido Demócrata Colombiano"
+  },
+  {
+    "nombre": "Jhonn Alexander Molina Betancur",
+    "corporacion": "CÁMARA",
+    "departamento": "Guainía",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Carlos Alberto Cuenca Chaux",
+    "corporacion": "CÁMARA",
+    "departamento": "Guainía",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "Jorge Alexander Quevedo Herrera",
+    "corporacion": "CÁMARA",
+    "departamento": "Guaviare",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Alexander Harley Bermúdez Lasso",
+    "corporacion": "CÁMARA",
+    "departamento": "Guaviare",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Flora Perdomo Andrade",
+    "corporacion": "CÁMARA",
+    "departamento": "Huila",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Lucy Mireya Bravo Obando",
+    "corporacion": "CÁMARA",
+    "departamento": "Huila",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Lourdes Paola Mateus Serrano",
+    "corporacion": "CÁMARA",
+    "departamento": "Huila",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Julio César Triana Quintero",
+    "corporacion": "CÁMARA",
+    "departamento": "Huila",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "Jorge Armando Figueroa Angarita",
+    "corporacion": "CÁMARA",
+    "departamento": "La Guajira",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Juan Loreto Gómez Soto",
+    "corporacion": "CÁMARA",
+    "departamento": "La Guajira",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Kelyn Johana González Duarte",
+    "corporacion": "CÁMARA",
+    "departamento": "Magdalena",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Chadan Francisco Rosado Taylor",
+    "corporacion": "CÁMARA",
+    "departamento": "Magdalena",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "José Felipe Hernández Polo",
+    "corporacion": "CÁMARA",
+    "departamento": "Magdalena",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Elizabeth Sabina Molina Campo",
+    "corporacion": "CÁMARA",
+    "departamento": "Magdalena",
+    "partido_politico": "Coalición Demócrata Amplia por la Paz"
+  },
+  {
+    "nombre": "Franklin Del Cristo Lozano de la Ossa",
+    "corporacion": "CÁMARA",
+    "departamento": "Magdalena",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Darwin Castellanos Romero",
+    "corporacion": "CÁMARA",
+    "departamento": "Meta",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "María del Carmen Mayusa Cruz",
+    "corporacion": "CÁMARA",
+    "departamento": "Meta",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Milton Virgilio Carreño Sánchez",
+    "corporacion": "CÁMARA",
+    "departamento": "Meta",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Erick Adrián Velasco Burbano",
+    "corporacion": "CÁMARA",
+    "departamento": "Nariño",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Carlos Alberto Pantoja Cortés",
+    "corporacion": "CÁMARA",
+    "departamento": "Nariño",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Julio Anibal Alvarez López",
+    "corporacion": "CÁMARA",
+    "departamento": "Nariño",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Alejandra Gabriela Abasolo Gómez",
+    "corporacion": "CÁMARA",
+    "departamento": "Nariño",
+    "partido_politico": "Avancemos Nariño"
+  },
+  {
+    "nombre": "José Luis Duarte Contreras",
+    "corporacion": "CÁMARA",
+    "departamento": "Norte de Santander",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Mónica Bocanegra",
+    "corporacion": "CÁMARA",
+    "departamento": "Norte de Santander",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Luis Ariel Francisco Rodríguez",
+    "corporacion": "CÁMARA",
+    "departamento": "Norte de Santander",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Juan Felipe Corzo Álvarez",
+    "corporacion": "CÁMARA",
+    "departamento": "Norte de Santander",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Eimy Julieth Suárez González",
+    "corporacion": "CÁMARA",
+    "departamento": "Norte de Santander",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "Diego Zambrano",
+    "corporacion": "CÁMARA",
+    "departamento": "Putumayo",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Jesús Armando Bedoya Rodríguez",
+    "corporacion": "CÁMARA",
+    "departamento": "Quindío",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Miguel Ángel Grisales Suárez",
+    "corporacion": "CÁMARA",
+    "departamento": "Quindío",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "John Edgar Pérez Rojas",
+    "corporacion": "CÁMARA",
+    "departamento": "Quindío",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "Fernando Arias Cardona",
+    "corporacion": "CÁMARA",
+    "departamento": "Risaralda",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Franyela Bermúdez Serna",
+    "corporacion": "CÁMARA",
+    "departamento": "Risaralda",
+    "partido_politico": "Cambio Radical"
+  },
+  {
+    "nombre": "José Durgués Espinosa Martínez",
+    "corporacion": "CÁMARA",
+    "departamento": "Risaralda",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "José Fredy Arias Herrera",
+    "corporacion": "CÁMARA",
+    "departamento": "Risaralda",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Mónica Bocanegra",
+    "corporacion": "CÁMARA",
+    "departamento": "San Andrés y Providencia",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Camilo Alfonso Torres Prada",
+    "corporacion": "CÁMARA",
+    "departamento": "Santander",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Jonathan Eduardo Pineda López",
+    "corporacion": "CÁMARA",
+    "departamento": "Santander",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Miguel Ángel Pinto Rueda",
+    "corporacion": "CÁMARA",
+    "departamento": "Santander",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Diego Fran Ariza Pérez",
+    "corporacion": "CÁMARA",
+    "departamento": "Santander",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Guillermo León Blanco Valencia",
+    "corporacion": "CÁMARA",
+    "departamento": "Santander",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Mario José Carvajal Jaimes",
+    "corporacion": "CÁMARA",
+    "departamento": "Santander",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Luis Ferley Sierra Jaimes",
+    "corporacion": "CÁMARA",
+    "departamento": "Santander",
+    "partido_politico": "Alianza Verde"
+  },
+  {
+    "nombre": "Pedro Antonio Paternina Gulfo",
+    "corporacion": "CÁMARA",
+    "departamento": "Sucre",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Alejandro De la Ossa Lacayo",
+    "corporacion": "CÁMARA",
+    "departamento": "Sucre",
+    "partido_politico": "Partido Político La Fuerza"
+  },
+  {
+    "nombre": "Milene Jarava Díaz",
+    "corporacion": "CÁMARA",
+    "departamento": "Sucre",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Guillermo Ignacio Alvira Acosta",
+    "corporacion": "CÁMARA",
+    "departamento": "Tolima",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Delcy Esperanza Isaza Buenaventura",
+    "corporacion": "CÁMARA",
+    "departamento": "Tolima",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "José Alejandro Martínez Sánchez",
+    "corporacion": "CÁMARA",
+    "departamento": "Tolima",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Marco Emilio Hincapié",
+    "corporacion": "CÁMARA",
+    "departamento": "Tolima",
+    "partido_politico": "Pacto Histórico – Alianza Verde"
+  },
+  {
+    "nombre": "Renzo Alexander García",
+    "corporacion": "CÁMARA",
+    "departamento": "Tolima",
+    "partido_politico": "Pacto Histórico – Alianza Verde"
+  },
+  {
+    "nombre": "Carlos Edward Osorio Aguiar",
+    "corporacion": "CÁMARA",
+    "departamento": "Tolima",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Alfredo Mondragón Garzón",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Ana Leidy Erazo Ruiz",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Jorge Augusto Palacio Garzón",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Laura Isabel Vera Zapata",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Carlos Eduardo Arizabaleta",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Paola Andrea Quiñones D’Haro",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Víctor Manuel Salcedo Guerrero",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Luis Alfonso Chávez Rivera",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Santiago Castro Gómez",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Jaime Ignacio Arizabaleta Fajardo",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "David Pinilla Calero",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Hernando González",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Liga de Gobernantes"
+  },
+  {
+    "nombre": "Juan Pablo Rojas Suárez",
+    "corporacion": "CÁMARA",
+    "departamento": "Valle del Cauca",
+    "partido_politico": "Ahora Colombia"
+  },
+  {
+    "nombre": "Liliana Hernández Melo",
+    "corporacion": "CÁMARA",
+    "departamento": "Vaupés",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Óscar Fabián Espinosa",
+    "corporacion": "CÁMARA",
+    "departamento": "Vaupés",
+    "partido_politico": "Partido ASI"
+  },
+  {
+    "nombre": "Luis Carlos Álvarez",
+    "corporacion": "CÁMARA",
+    "departamento": "Vichada",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Juan David Londoño",
+    "corporacion": "CÁMARA",
+    "departamento": "Vichada",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Pedro Alejandro Murcia Lamprea",
+    "corporacion": "CÁMARA",
+    "departamento": "Colombianos en el exterior",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Óscar Benavides",
+    "corporacion": "CÁMARA",
+    "departamento": "Circunscripción Especial Afrodescendientes",
+    "partido_politico": "Independiente / No especificado"
+  },
+  {
+    "nombre": "Winsner Sandoval",
+    "corporacion": "CÁMARA",
+    "departamento": "Circunscripción Especial Afrodescendientes",
+    "partido_politico": "Independiente / No especificado"
+  },
+  {
+    "nombre": "Linderman Andrada",
+    "corporacion": "CÁMARA",
+    "departamento": "Circunscripción Especial Indígenas",
+    "partido_politico": "MAIS"
+  },
+  {
+    "nombre": "Carlos Calvo",
+    "corporacion": "CÁMARA",
+    "departamento": "Circunscripción Especial Indígenas",
+    "partido_politico": "MAIS"
+  },
+  {
+    "nombre": "Jay Pang",
+    "corporacion": "CÁMARA",
+    "departamento": "Comunidad Raizal",
+    "partido_politico": "Independiente / No especificado"
+  },
+  {
+    "nombre": "Diana Carolina Corcho Mejía",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Pedro Hernando Flórez Porras",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Carmen Patricia Caicedo Omar",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Wilson Néber Arias Castillo",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Laura Cristina Ahumada García",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Walter Alfonso Rodríguez Chaparro",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Aída Yolanda Avella Esquivel",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Ferney Silva Idrobo",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Yuly Esmeralda Hernández Silva",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Carlos Alberto Benavides Mora",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Sandra Claudia Chindoy Jamioy",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Jorge Alejandro Ocampo Giraldo",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "María Eugenia Londoño Ocampo",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Alex Xavier Flórez Hernández",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Kamelia Edith Zuluaga Navarro",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Agmeth José Escaf Tijerino",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Yaini Isabel Contreras Jiménez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Cristian Kevin Gómez Paz",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Isabel Cristina Zuleta López",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Martín Alonso Caicedo Carabalí",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Deisy Johana Osorio Márquez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "David Ricardo Racero Mayorca",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Deyci Alejandra Omaña Ortiz",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Orlando Miguel De La Hoz García",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Mary Jurado Palomino",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Pacto Histórico"
+  },
+  {
+    "nombre": "Andrés Eduardo Forero Molina",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Rafael Nieto Loaiza",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Claudia Margarita Zuleta Murgas",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Hernán Darío Cadavid Márquez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Julia Correa Nuttin",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Carlos Manuel Meisel Vergara",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Christian Munir Garcés Aljure",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "María Clara Posada Caicedo",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Honorio Miguel Henríquez Pinedo",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Josué Alirio Barrera Rodríguez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Esteban Quintero Cardona",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Enrique Cabrales Baquero",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Óscar Leonardo Villamizar Meneses",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Juan Fernando Espinal Ramírez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "María Angélica Guerra López",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Juan Fernando Caicedo Callejas",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Zandra María Bernal Rincón",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Centro Democrático"
+  },
+  {
+    "nombre": "Lidio Arturo García Turbay",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Yessid Enrique Pulgar Daza",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "María Eugenia Lopera Monsalve",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Alix Yirley Vargas Torrado",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Gersson Vargas Valdeleón",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Camilo Andrés Torres Villalba",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Leonardo de Jesús Gallego Arroyave",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Óscar Hernán Sánchez León",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Héctor Olimpo Espinosa Oliver",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Fabio Raúl Amín Saleme",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Santiago Montoya Montoya",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Álvaro Henry Monedero Rivera",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Laura Ester Fortich Sánchez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Liberal"
+  },
+  {
+    "nombre": "Jonathan Ferney Pulido Hernández",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "Luis Carlos Rúa Sánchez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "Andrea Padilla Villarraga",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "John Edickson Amaya Rodríguez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "Ariel Fernando Ávila Martínez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "Gustavo Adolfo Moreno Hurtado",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "José Gutemberg Macea Gómez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "Duvalier Sánchez Arango",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "Wilder Iberson Escobar Ortiz",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "Luis Alfonso Mejía Núñez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "Carlos Eduardo Enríquez Caicedo",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Alianza por Colombia"
+  },
+  {
+    "nombre": "Nadya Georgette Blel Scaff",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Wadith Alberto Manzur Imbett",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Daniel Restrepo Carmona",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "David Alejandro Barguil Assis",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Miguel Ángel Barreto Castillo",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Diela Liliana Benavides Solarte",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Marcos Daniel Pineda García",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Luis Eduardo Díaz Mateus",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Juan Carlos García Gómez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Santiago Barreto Triana",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido Conservador"
+  },
+  {
+    "nombre": "Norma Hurtado Sánchez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Juan Carlos Garcés Rojas",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Wilmer Ramiro Carrillo Mendoza",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Alfredo Rafael Deluque Zuleta",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "John Moisés Besaile Fayad",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Ana Paola García Soto",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "María Irma Noreña Arboleda",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Antonio José Correa Jiménez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "José Alfredo Gnecco Zuleta",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Partido de la U"
+  },
+  {
+    "nombre": "Edgardo Miguel Espitia Cabrales",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Cambio Radical y ALMA"
+  },
+  {
+    "nombre": "José Nicolás Gómez Medina",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Cambio Radical y ALMA"
+  },
+  {
+    "nombre": "Selmen David Arana Cano",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Cambio Radical y ALMA"
+  },
+  {
+    "nombre": "Didier Lobo Chinchilla",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Cambio Radical y ALMA"
+  },
+  {
+    "nombre": "Gonzalo Dimas Baute González",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Cambio Radical y ALMA"
+  },
+  {
+    "nombre": "Carlos Mario Farelo Daza",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Cambio Radical y ALMA"
+  },
+  {
+    "nombre": "Nelson Javier López Rodríguez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Cambio Radical y ALMA"
+  },
+  {
+    "nombre": "Ana Paola Agudelo García",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Ahora Colombia"
+  },
+  {
+    "nombre": "Manuel Antonio Vírguez Piraquive",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Ahora Colombia"
+  },
+  {
+    "nombre": "Carlos Eduardo Guevara Villabón",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Ahora Colombia"
+  },
+  {
+    "nombre": "Jennifer Dalley Pedraza Sandoval",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Ahora Colombia"
+  },
+  {
+    "nombre": "María Lucía Villalba Gómez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Ahora Colombia"
+  },
+  {
+    "nombre": "Enrique Gómez Martínez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Salvación Nacional"
+  },
+  {
+    "nombre": "Sara Jimena Castellanos Rodríguez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Salvación Nacional"
+  },
+  {
+    "nombre": "Germán Andrés Rodríguez Prieto",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Salvación Nacional"
+  },
+  {
+    "nombre": "John Alejandro Bermeo Rodríguez",
+    "corporacion": "SENADO",
+    "departamento": "Nacional",
+    "partido_politico": "Salvación Nacional"
+  },
+  {
+    "nombre": "Martha Isabel Peralta Epieyú",
+    "corporacion": "SENADO",
+    "departamento": "Circunscripción Indígena",
+    "partido_politico": "MAIS"
+  },
+  {
+    "nombre": "José Wilman Tumbo Chepe",
+    "corporacion": "SENADO",
+    "departamento": "Circunscripción Indígena",
+    "partido_politico": "Minga"
+  }
+]

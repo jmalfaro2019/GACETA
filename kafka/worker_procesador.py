@@ -7,6 +7,7 @@ import torch
 import fitz  # For columns and images
 import pdfplumber  # The table expert
 import io
+import sys
 from PIL import Image
 import psycopg2
 from groq_parser import parse_markdown_to_json
@@ -179,13 +180,18 @@ try:
             
             # 2. AI Processing (Groq)
             print(f"Sending '{base_name}' to Groq for parsing...")
-            structured_data = parse_markdown_to_json(markdown_text)
+            try:
+                structured_data = parse_markdown_to_json(markdown_text)
+            except Exception as ai_error:
+                print(f"FATAL ERROR: AI processing failed for '{base_name}': {ai_error}")
+                print("Stopping program to ensure data integrity and avoid wasting API resources.")
+                sys.exit(1)
             
             # 3. Sauvegarde dans un fichier local 
             json_path = os.path.normpath(os.path.join("documents_json", f"{base_name}.json"))
             os.makedirs(os.path.dirname(json_path), exist_ok=True)
             
-            # 2. Sauvegarde dans un fichier local (ton code d'origine)
+            # 2. Sauvegarde dans un archivo local (ton code d'origine)
             with open(json_path, "w", encoding="utf-8") as f:
                 json.dump(structured_data, f, ensure_ascii=False, indent=4)
                 print(f"Success! Saved structured JSON to: {json_path}")
@@ -204,27 +210,32 @@ try:
                 )
                 cursor = conn.cursor()
                 
+                # Extraemos el título generado por la IA para usarlo en la DB
+                ai_title = structured_data.get("metadatos_generales", {}).get("titulo_principal", base_name)
+
                 # Convertimos el diccionario a un string JSON para guardarlo en la DB
                 json_para_db = json.dumps(structured_data)
-                # On insère le titre (base_name) et le contenu
+                
+                # Insertamos el título de la IA y el JSON. La fecha se genera automáticamente (DEFAULT now())
                 insert_query = """
                     INSERT INTO documents (titre, contenu_json)
                     VALUES (%s, %s);
                 """
-                cursor.execute(insert_query, (base_name, json_para_db))
+                cursor.execute(insert_query, (ai_title, json_para_db))
                 
                 # On valide et on ferme
                 conn.commit()
                 cursor.close()
                 conn.close()
-                print(f"Success! Inserted '{base_name}' into ParadeDB.")
+                print(f"Success! Inserted '{ai_title}' into ParadeDB.")
                 
             except Exception as db_error:
                 print(f"Database error while inserting '{base_name}': {db_error}")
             # ---------------------------------------------------------
 
         except Exception as e:
-            print(f"Error converting: {e}")
+            # Errors that are NOT fatal (like PDF extraction issues) are still handled gracefully
+            print(f"Non-fatal error processing document: {e}")
 
 except KeyboardInterrupt:
     print("\nShutting down worker...")

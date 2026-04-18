@@ -1,5 +1,74 @@
 {
-    "summary": "",
-    "key_concepts": [],
-    "clean_content": ""
+    "metadatos_generales": {
+        "numero_gaceta": "286",
+        "fecha_publicacion": "2026-04-15",
+        "tipo_documento": "Informe de Conciliación",
+        "titulo_principal": "Proyecto de Ley número 099 de 2024 Cámara, número 374 de 2025 Senado",
+        "autores_o_firmantes": [
+            "Julián David López Tenorio",
+            "Lidio García Turbay",
+            "Diego Alejandro González González",
+            "Jaime Luis Lacouture Peñaloza",
+            "Senado de la República",
+            "Sandra Yaneth Jaimes Cruz",
+            "Ingrid Johana Aguirre Juvinao",
+            "Cámara de Representantes",
+            "Ángela María Vergara González"
+        ],
+        "palabras_clave": [
+            "Conciliación",
+            "Protección de ciclistas y peatones",
+            "Proyecto de Ley",
+            "Festival Nacional del Caimán Cienaguero",
+            "Objeciones Presidenciales",
+            "Departamento del Magdalena",
+            "Chiquinquirá",
+            "Municipio de Ciénaga",
+            "Cultura",
+            "Seguridad vial",
+            "Patrimonio Cultural Inmaterial",
+            "Boyacá",
+            "Religión",
+            "Turismo",
+            "Infraestructura vial"
+        ],
+        "resumen_ia": "El presente informe de conciliación se refiere al Proyecto de Ley número 099 de 2024 Cámara, número 374 de 2025 Senado, por medio de la cual se vincula a la Nación en el homenaje al municipio de Chiquinquirá en el departamento de Boyacá, como destacado centro turístico religioso, histórico y cultural, y se dictan otras disposiciones. El informe presenta el texto conciliado del proyecto de ley, después de analizar las diferencias entre los textos aprobados por la Cámara de Representantes y el Senado de la República. El proyecto de ley busca adoptar medidas para la protección de los ciclistas y peatones en las vías del territorio nacional, estableciendo acciones de prevención, gestión y control, así como medidas punitivas para incrementar las sanciones aplicables a quienes causen siniestros viales con víctimas ciclistas o peatones. Se establecen disposiciones para la infraestructura vial segura y adecuada para ciclistas y peatones, y se fomenta la participación de usuarios de la bicicleta y peatones en los planes y proyectos de seguridad vial. El Presidente de la República objetó el Proyecto de Ley 456 de 2024 Cámara, 154 de 2025 Senado, que busca reconocer y declarar Patrimonio Cultural Inmaterial de la Nación el Festival Nacional del Caimán Cienaguero. La objeción se basa en la violación del artículo 189.16 y 150.7 de la Constitución Política, que establecen la competencia del Presidente para modificar la estructura de los ministerios y la determinación de la estructura de la administración nacional. La Comisión Accidental designada para estudiar las objeciones presidenciales coincide con la necesidad de dejar claras las competencias entre las ramas ejecutiva y legislativa del poder público. El proyecto de ley busca reconocer y declarar como Patrimonio Cultural Inmaterial de la Nación el Festival Nacional del Caimán Cienaguero, que se celebra en el municipio de Ciénaga, departamento del Magdalena. El festival es considerado de gran importancia social, histórica y cultural, y se busca su preservación y promoción a nivel nacional e internacional. El proyecto también establece la creación de un comité de salvaguardia cultural y promoción turística, y autoriza la emisión de estampillas postales conmemorativas para reconocer la importancia del festival.",
+        "contenido_limpio": "El texto del informe de conciliación del Proyecto de Ley número 099 de 2024 Cámara, número 374 de 2025 Senado, por medio de la cual se vincula a la Nación en el homenaje al municipio de Chiquinquirá en el departamento de Boyacá, como destacado centro turístico religioso, histórico y cultural, y se dictan otras disposiciones.\n\nEl Ministerio de Transporte, en coordinación con la Agencia Nacional de Seguridad Vial (ANSV), deberá articular e incluir en el Programa Nacional de Fomento al uso de la Bicicleta en el territorio nacional, en la Política Nacional Movilidad Urbana y Regional, en la estrategia Nacional de Movilidad Activa y en el Plan Nacional de Seguridad Vial 2022-2031 planes, programas y proyectos orientados a educar y divulgar las normas de seguridad y protección en la vía para los usuarios de la bicicleta y los peatones...\n\nEl contenido del documento se refiere a la objeción presidencial al Proyecto de Ley 456 de 2024 Cámara, 154 de 2025 Senado, que busca reconocer y declarar Patrimonio Cultural Inmaterial de la Nación el Festival Nacional del Caimán Cienaguero. La objeción se basa en la violación del artículo 189.16 y 150.7 de la Constitución Política. La Comisión Accidental designada para estudiar las objeciones presidenciales coincide con la necesidad de dejar claras las competencias entre las ramas ejecutiva y legislativa del poder público.\n\nEl Festival Nacional del Caimán Cienaguero es un evento cultural que se celebra en el municipio de Ciénaga, departamento del Magdalena. El festival tiene una gran importancia social, histórica y cultural, y es considerado como parte del patrimonio cultural inmaterial de la nación. El proyecto de ley busca reconocer y declarar al festival como Patrimonio Cultural Inmaterial de la Nación, y establece la creación de un comité de salvaguardia cultural y promoción turística para su preservación y promoción. También se autoriza la emisión de estampillas postales conmemorativas para reconocer la importancia del festival."
+    },
+    "detalles_especificos": {
+        "numero_proyecto": "099 de 2024 Cámara, número 374 de 2025 Senado 84 de 2025 Senado, 303 de 2024 Cámara 456 de 2024 Cámara, 154 de 2025 Senado",
+        "camara_origen": "Cámara de Representantes",
+        "argumentos_principales": [
+            "Homenaje al municipio de Chiquinquirá",
+            "Desarrollo turístico y religioso",
+            "Preservación del patrimonio histórico",
+            "Protección de ciclistas y peatones",
+            "Seguridad vial",
+            "Infraestructura vial",
+            "Reconocimiento y declaración del Festival Nacional del Caimán Cienaguero como Patrimonio Cultural Inmaterial de la Nación",
+            "Creación de un comité de salvaguardia cultural y promoción turística",
+            "Emisión de estampillas postales conmemorativas"
+        ],
+        "impacto_fiscal": "No se especifica",
+        "tipo_objecion": "Inconstitucionalidad",
+        "articulos_objetados": [
+            "1°",
+            "3°",
+            "4°",
+            "5°"
+        ],
+        "argumento_gobierno": "Violación del artículo 189.16 y 150.7 de la Constitución Política",
+        "pliego_de_modificaciones": [
+            {
+                "articulo": "1°",
+                "modificacion": "Se elimina la palabra 'declárese'",
+                "observacion": "Con miras a que el Festival del Caimán Cienaguero continúe con el proceso de declaración de un patrimonio cultural de la Nación"
+            },
+            {
+                "articulo": "3°",
+                "modificacion": "Se adiciona la palabra 'podrá'",
+                "observacion": "En aras de evitar intervenir con funciones propias del Gobierno nacional"
+            }
+        ]
+    }
 }
