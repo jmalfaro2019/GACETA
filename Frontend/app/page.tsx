@@ -5,6 +5,8 @@ import SearchBar from "@/components/SearchBar";
 import { apiClient } from "@/lib/api-client";
 import { Scale, Users, Activity, Sparkles } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const realDocuments = await apiClient.getDocuments(2);
 
