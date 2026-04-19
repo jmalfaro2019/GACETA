@@ -230,13 +230,6 @@ def callback(ch, method, properties, body):
         
         # 4. INSERTION DANS PARADEDB
         try:
-            conn = psycopg2.connect(
-                dbname="gaceta_db",
-                user="admin",
-                password="secret",
-                host="localhost",
-                port="5433"
-            )
             cursor = conn.cursor()
             ai_title = structured_data.get("metadatos_generales", {}).get("titulo_principal", base_name)
             json_para_db = json.dumps(structured_data)
