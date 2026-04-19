@@ -5,6 +5,7 @@ import { apiClient } from "@/lib/api-client";
 import { ArrowLeft, User, Building2, Calendar, ThumbsUp, ThumbsDown, Minus, Sparkles, FileText, Info, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { STATUS_STYLES, PARTY_COLORS } from "@/data/constants";
 
 // Force dynamic rendering to avoid static generation issues in dev
 export const dynamic = "force-dynamic";
