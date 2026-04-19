@@ -16,6 +16,8 @@ import psycopg2
 from groq_parser import parse_markdown_to_json
 import requests
 import tempfile
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 def table_to_markdown(table_data):
     if not table_data or not table_data[0]:
@@ -263,15 +265,41 @@ def callback(ch, method, properties, body):
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
-# Inicia la escucha
-try:
-    channel.basic_consume(queue=queue_name, on_message_callback=callback)
-    channel.start_consuming()
-except KeyboardInterrupt:
-    print("\nShutting down worker...")
-    connection.close()
-except Exception as global_error:
-    print(f"Global worker error: {global_error}")
-    if not connection.is_closed:
+class HealthCheckHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write(b"OK - Worker is running")
+
+def run_health_check_server():
+    """Runs a minimal HTTP server on port 7860 to satisfy Hugging Face's health check."""
+    port = int(os.getenv("PORT", 7860))
+    server_address = ('', port)
+    httpd = HTTPServer(server_address, HealthCheckHandler)
+    print(f"[*] Health check server started on port {port}")
+    httpd.serve_forever()
+
+def main():
+    # Inicia la escucha
+    try:
+        channel.basic_consume(queue=queue_name, on_message_callback=callback)
+        channel.start_consuming()
+    except KeyboardInterrupt:
+        print("\nShutting down worker...")
         connection.close()
+    except Exception as global_error:
+        print(f"Global worker error: {global_error}")
+        if not connection.is_closed:
+            connection.close()
+
+if __name__ == "__main__":
+    # 1. Start the health check server in a background thread
+    # This prevents Hugging Face from timing out (30 min limit)
+    health_thread = threading.Thread(target=run_health_check_server, daemon=True)
+    health_thread.start()
+
+    # 2. Start the RabbitMQ consumer
+    print("[*] Starting document processor worker...")
+    main()
 

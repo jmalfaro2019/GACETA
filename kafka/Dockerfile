@@ -14,6 +14,10 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Pre-download EasyOCR models so they are ready at runtime
+# This prevents the Space from timing out during initialization
+RUN python -c "import easyocr; easyocr.Reader(['es'])"
+
 # Copy all files from the current directory to /app
 COPY . .
 
