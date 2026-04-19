@@ -2,7 +2,6 @@ import scrapy
 import re
 import os
 import json
-import pika
 import requests
 from dotenv import load_dotenv
 
