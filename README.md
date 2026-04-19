@@ -6,10 +6,11 @@ An automated system for extracting, processing, and analyzing legislative docume
 
 This project consists of four main compoVnents:
 
-1. **Frontend** (Next.js/React): Web interface for viewing and querying laws and legislative projects.
-2. **Gaceta Bot** (Scrapy): Web scraper for extracting legislative documents.
-3. **Kafka Worker**: Document processor that converts PDF documents to Markdown format using OCR.
-4. **ParadeDB** (PostgreSQL): Full-Text Search database engine to store and query the processed legislative text.
+1. **Frontend** (Next.js/React): Web interface for monitorinig. Hosted on **Vercel**.
+2. **REST API** (FastAPI): Centralized backend for search and ingestion. Hosted on **Koyeb**.
+3. **Supabase Storage/DB**: Stores processed documents and handles Full-Text Search.
+4. **Hugging Face Worker**: Background worker for OCR and AI. Hosted on **HF Spaces** (Docker).
+5. **RabbitMQ**: Cloud communication via **CloudAMQP**.
 
 ## System Requirements
 
@@ -26,7 +27,7 @@ This project consists of four main compoVnents:
 
 ### Step 1: Start Infrastructure with Docker
 
-Navigate to the `kafka/` folder and start the Kafka and ParadeDB containers:
+Navigate to the `kafka/` folder and start the infrastructure. *Note: We are using CloudAMQP for RabbitMQ, so Docker is primarily for ParadeDB:*
 
 ```bash
 cd kafka
@@ -34,12 +35,10 @@ docker-compose up -d
 ```
 
 This will start:
-- Apache Kafka broker (accessible at `localhost:9092`)
-- Apache ZooKeeper (dependency for Kafka)
 - **ParadeDB** (accessible at `localhost:5433`)
+- The internal networking for future services.
 
 To verify the containers are running properly:
-
 ```bash
 docker ps
 ```
@@ -107,28 +106,35 @@ pip install -r requirements.txt
 
 Create a `.env` file in the project root if needed:
 
-```bash
-KAFKA_BOOTSTRAP_SERVERS=localhost:9092
-TOPIC=new_gazettes
-GROUP_ID=pdf_processors_group_v4
+Create a `.env` file in the project root:
 
-GROQ_API_KEY="YOUR API KEY DE GROQ"
+```bash
+# Infrastructure
+CLOUDAMQP_URL="amqps://your-cloudamqp-url"
+
+# AI Analysis
+GROQ_API_KEY="YOUR_GROQ_API_KEY"
+
+# Frontend
+NEXT_PUBLIC_API_URL="http://localhost:8000/api/v1"
 ```
 
 ### Step 6: Start the Document Processor
 
-Run the Kafka worker to process incoming documents. **Make sure to run this from the `kafka/` directory** so the script can resolve paths correctly:
+Run the worker to process incoming documents from RabbitMQ:
 
 ```bash
 cd kafka
 python worker_procesador.py
 ```
 
-The worker will:
-- Listen for new documents on the Kafka topic `new_gazettes`.
-- Convert PDF files to Markdown format using OCR models.
-- Save processed files locally to `kafka/documents_markdown/`.
-- **Insert the processed text and metadata directly into ParadeDB.**
+The worker now follows a **3-Stage Modular Pipeline**:
+1. **Extraction (PDF -> MD)**: Converts PDF to Markdown and **saves a checkpoint** to `documents_markdown/`.
+2. **Analysis (MD -> JSON)**: Uses Groq AI to analyze the markdown and generate structured metadata.
+3. **Ingestion (JSON -> DB)**: Automatically inserts the results into ParadeDB.
+
+> [!TIP]
+> If the AI stage fails (e.g. rate limits), the Markdown checkpoint is preserved on disk, allowing you to resume later.
 
 ### Step 7: Start the Scraper
 
@@ -141,13 +147,24 @@ scrapy crawl congreso
 
 **How it works:**
 - The spider downloads PDF documents from the Congress website.
-- Saves them to `gaceta_bot/documents/`.
-- Sends download notifications to Kafka.
+- Saves them locally to `gaceta_bot/documents/`.
+- Sends download notifications to **RabbitMQ (CloudAMQP)**.
 - The worker immediately picks up the task, processes the PDF, and indexes it in the database.
 
-### Step 8: Run the Frontend (Optional)
+### Step 8: Start the REST API
 
-In a third terminal, start the web interface to query the processed laws:
+The frontend now communicates with a dedicated backend service for faster search and data validation:
+
+```bash
+# From the project root
+uvicorn backend.main:app --reload
+```
+- **Swagger Docs:** `http://localhost:8000/docs`
+- **Port:** 8000
+
+### Step 9: Run the Frontend
+
+Start the web interface:
 
 ```bash
 cd Frontend
@@ -159,20 +176,24 @@ The web interface will be available at `http://localhost:3000`
 
 ---
 
+## Operations & Utilities
+
+### Mass Ingestion (Batch Parser)
+If you have a large mass of existing Markdown files, you can skip the PDF extraction and run the AI analysis/ingestion in bulk:
+
+```bash
+cd kafka
+python batch_parser.py
+```
+This script features **checkpointing**: it will automatically skip any file that has already been successfully analyzed and inserted into the database.
+
 ## Stopping the Infrastructure
 
-To stop Kafka and ParadeDB when finished:
+To stop ParadeDB:
 
 ```bash
 cd kafka
 docker-compose down
-```
-
-**⚠️ Warning:** To remove all containers AND permanently delete all stored database records:
-
-```bash
-cd kafka
-docker-compose down -v
 ```
 
 ---
@@ -250,6 +271,36 @@ See `requirements.txt` for detailed package versions.
 **Utilities:**
 - `python-dotenv`: Environment variable management
 - `python-json-logger`: JSON logging for debugging
+
+## Cloud Deployment Guide
+
+This project is designed to be deployed across several free-tier cloud providers for a fully autonomous monitoring system.
+
+### 1. Database & Storage (Supabase)
+1. Create a project on [Supabase](https://supabase.com/).
+2. Run the [supabase_init.sql](file:///c:/Users/alfar/OneDrive/Escritorio/PROYECTOS/GACETA/supabase_init.sql) script in the SQL Editor.
+3. Create a **Storage Bucket** named `gazettes` and set its policy to "Public" (or update the code for signed URLs).
+
+### 2. Message Broker (CloudAMQP)
+1. Create a free instance on [CloudAMQP](https://www.cloudamqp.com/).
+2. Copy the **AMQP URL**.
+
+### 3. Backend API (Koyeb)
+1. Point Koyeb to your GitHub repository.
+2. Select the `/backend` folder or use the root with the `backend/Dockerfile`.
+3. Set the Environment Variables: `SUPABASE_URL`, `SUPABASE_KEY`, `CLOUDAMQP_URL`, `API_SECRET_KEY`.
+
+### 4. Processing Worker (Hugging Face Spaces)
+1. Create a new **Docker Space** on Hugging Face.
+2. Set it to **Public**.
+3. Upload the contents of the `kafka/` directory (including its Dockerfile and README).
+4. Configured the Secrets: `CLOUDAMQP_URL`, `SUPABASE_URL`, `SUPABASE_KEY`, `GROQ_API_KEY`.
+
+### 5. Frontend (Vercel)
+1. Import the repository in Vercel.
+2. Set `NEXT_PUBLIC_API_URL` to your Koyeb API URL.
+
+---
 
 ## License
 

@@ -2,14 +2,18 @@ import scrapy
 import re
 import os
 import json
-from confluent_kafka import Producer
+import pika
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class CongresoSpider(scrapy.Spider):
     name = 'congreso'
     start_urls = ['https://svrpubindc.imprenta.gov.co/senado/']
-    total_pages = 1
-    total_documents = 1
+    total_pages = 20
+    total_documents = 50
     os.makedirs("documents", exist_ok=True)
     custom_settings = {
         'CONCURRENT_REQUESTS': 1,
@@ -18,9 +22,48 @@ class CongresoSpider(scrapy.Spider):
 
     def __init__(self, *args, **kwargs):
         super(CongresoSpider, self).__init__(*args, **kwargs)
-        bootstrap_servers = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
-        self.producer = Producer({'bootstrap.servers': bootstrap_servers})
-        self.topic = 'new_gazettes'
+        # Configuración de API y Seguridad
+        self.api_url = os.getenv('NEXT_PUBLIC_API_URL', 'http://localhost:8000/api/v1')
+        self.api_key = os.getenv('API_SECRET_KEY', 'super-secret-default-key')
+        
+        # Ya no necesitamos conexión directa a RabbitMQ desde la araña
+        self.connection = None
+        self.channel = None
+        
+        self.queue = 'new_gazettes'
+        self.log(f"Spider initialized. Target API: {self.api_url}")
+
+    def document_exists_in_db(self, title):
+        """Checks if a document with this title already exists in the database."""
+        try:
+            # We search for the exact title
+            response = requests.get(f"{self.api_url}/documents/search?q={title}")
+            if response.status_code == 200:
+                results = response.json()
+                # If there's an exact match in the titles
+                return any(doc['titre'].lower() == title.lower() for doc in results)
+        except Exception as e:
+            self.log(f"Error checking document existence: {e}")
+        return False
+
+    def upload_to_api(self, file_path, file_name):
+        """Uploads the PDF to the backend API."""
+        url = f"{self.api_url}/documents/upload"
+        headers = {"X-API-Key": self.api_key}
+        
+        try:
+            with open(file_path, 'rb') as f:
+                files = {'file': (file_name, f, 'application/pdf')}
+                response = requests.post(url, headers=headers, files=files)
+                
+            if response.status_code == 200:
+                self.log(f"Successfully uploaded {file_name} to API.")
+                return True
+            else:
+                self.log(f"Failed to upload {file_name}. Status: {response.status_code}, Body: {response.text}")
+        except Exception as e:
+            self.log(f"Error during API upload: {e}")
+        return False
 
     def parse(self, response):
         self.log('Starting: Looking for initial ViewState')
@@ -60,23 +103,20 @@ class CongresoSpider(scrapy.Spider):
 
         destination_folder = 'documents'
         os.makedirs(destination_folder, exist_ok=True)
-        file_name = f'documents/document_page_{current_page}_number_{page_index + 1}.pdf'
-        path = os.path.join(file_name)
-        with open(file_name, 'wb') as f:
-            f.write(response.body)
+        file_name = f'document_page_{current_page}_number_{page_index + 1}.pdf'
+        file_path = os.path.join(destination_folder, file_name)
+        
+        # Incremental check: Skip if already in DB
+        if self.document_exists_in_db(file_name):
+            self.log(f"SKIPPING: {file_name} already exists in database.")
+        else:
+            with open(file_path, 'wb') as f:
+                f.write(response.body)
+            self.log(f'SUCCESS! File saved: {file_name}')
 
-        self.log(f'SUCCESS! File saved: {file_name}')
+            # 2. Upload to API (triggers the rest of the pipeline)
+            self.upload_to_api(file_path, file_name)
 
-        # Send message to Kafka
-        message = {
-            "file": file_name,
-            "path": path,
-            "web_page": current_page,
-            "status": "downloaded"
-        }
-
-        self.producer.produce(self.topic, value=json.dumps(message).encode('utf-8'))
-        self.producer.poll(0)
         if page_index < self.total_documents:
             next_index = page_index + 1
             yield from self.download_document(current_page=current_page, page_index=next_index, view_state=view_state)

@@ -27,8 +27,10 @@ interface DocumentProps {
 }
 
 export default function RealLawCard({ document }: DocumentProps) {
-  const data = document.contenu_json as RealLawJson;
-  const meta = data.metadatos_generales;
+  // Safe parsing in case contenu_json comes as a string from the API
+  const rawData = document.contenu_json;
+  const data = (typeof rawData === "string" ? JSON.parse(rawData) : rawData) as RealLawJson;
+  const meta = data?.metadatos_generales;
   
   const dateStr = new Date(document.date_creation).toLocaleDateString("en-US", {
     year: "numeric",
@@ -77,20 +79,24 @@ export default function RealLawCard({ document }: DocumentProps) {
 
         {/* Description snippet (Resumen IA) */}
         <p className="text-sm text-slate-400 leading-relaxed line-clamp-3">
-          {meta?.resumen_ia}
+          {meta?.resumen_ia || "No detailed summary available for this analysis."}
         </p>
 
         {/* Concepts / Tags (Limit to 5) */}
         <div className="flex flex-wrap gap-2">
-          {uniqueConcepts.map((concept, index) => (
-            <span
-              key={index}
-              className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-medium bg-indigo-500/5 text-indigo-300 border border-indigo-500/10 group-hover:border-indigo-500/30 transition-all"
-            >
-              <Tag size={10} />
-              {concept}
-            </span>
-          ))}
+          {uniqueConcepts.length > 0 ? (
+            uniqueConcepts.map((concept, index) => (
+              <span
+                key={index}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-medium bg-indigo-500/5 text-indigo-300 border border-indigo-500/10 group-hover:border-indigo-500/30 transition-all"
+              >
+                <Tag size={10} />
+                {concept}
+              </span>
+            ))
+          ) : (
+            <span className="text-[10px] text-slate-600 italic">No keywords extracted</span>
+          )}
         </div>
 
         {/* Action button */}

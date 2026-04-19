@@ -5,21 +5,20 @@
         "tipo_documento": "Informe de Conciliación",
         "titulo_principal": "Informe de conciliación del Proyecto de Ley No. 448/2025 Senado - 403/2024 Cámara",
         "autores_o_firmantes": [
-            "Luz Ayda Pastrana Loaiza",
-            "Jael Quiroga Carrillo"
+            "Jael Quiroga Carrillo",
+            "Luz Ayda Pastrana Loaiza"
         ],
         "palabras_clave": [
+            "Colombia",
             "Día Nacional de la Madre y el Padre Comunitario",
-            "Conmemoración",
-            "Colombia"
+            "Conmemoración"
         ],
-        "resumen_ia": "El informe de conciliación del Proyecto de Ley No. 448/2025 Senado - 403/2024 Cámara busca establecer la conmemoración del Día Nacional de la Madre y el Padre Comunitario en Colombia. El proyecto de ley tiene como objetivo instituir el 9 de noviembre de cada año como el día nacional para conmemorar y exaltar la labor de las madres y padres comunitarios en todo el territorio nacional. El informe detalla las diferencias entre los textos aprobados por el Senado y la Cámara de Representantes, y propone un texto conciliado para ser aprobado por ambas corporaciones.",
-        "contenido_limpio": "El informe de conciliación del Proyecto de Ley No. 448/2025 Senado - 403/2024 Cámara se refiere a la conmemoración del Día Nacional de la Madre y el Padre Comunitario en Colombia. El proyecto de ley instituye el 9 de noviembre de cada año como el día nacional para conmemorar y exaltar la labor de las madres y padres comunitarios en todo el territorio nacional."
+        "resumen_ia": "El informe de conciliación del Proyecto de Ley No. 448/2025 Senado - 403/2024 Cámara busca establecer la conmemoración del Día Nacional de la Madre y el Padre Comunitario en Colombia. El proyecto de ley tiene como objetivo instituir el 9 de noviembre de cada año como el día nacional para conmemorar y exaltar la labor de las madres y padres comunitarios en todo el territorio nacional. El informe detalla las diferencias entre los textos aprobados por el Senado y la Cámara de Representantes, y propone un texto conciliado para ser aprobado por ambas corporaciones legislativas.",
+        "contenido_limpio": "El informe de conciliación del Proyecto de Ley No. 448/2025 Senado - 403/2024 Cámara se refiere a la conmemoración del Día Nacional de la Madre y el Padre Comunitario en Colombia. El proyecto de ley busca instituir el 9 de noviembre de cada año como el día nacional para conmemorar y exaltar la labor de las madres y padres comunitarios en todo el territorio nacional."
     },
     "detalles_especificos": {
-        "tipo_informe": "Conciliación",
-        "proyecto_de_ley": "No. 448/2025 Senado - 403/2024 Cámara",
-        "diferencias_textos": "Se encontraron diferencias entre los textos aprobados por el Senado y la Cámara de Representantes",
-        "texto_conciliado": "Se propone un texto conciliado para ser aprobado por ambas corporaciones"
+        "tipo_informe": "Conciliación de textos",
+        "texto_conciliado": "El texto conciliado propuesto establece la conmemoración del Día Nacional de la Madre y el Padre Comunitario en Colombia el 9 de noviembre de cada año.",
+        "diferencias_textos": "Se encontraron diferencias entre los textos aprobados por el Senado y la Cámara de Representantes, principalmente en la redacción de algunos artículos."
     }
 }

@@ -2,8 +2,8 @@
 scrapy==2.11.2
 lxml==4.9.4
 
-# Apache Kafka - Message Streaming
-confluent-kafka==2.3.0
+# RabbitMQ - Message Streaming
+pika==1.3.2
 
 # PDF Text Extraction & OCR
 pdfplumber==0.10.3
@@ -21,10 +21,17 @@ python-dotenv==1.0.0
 
 # HTTP Library for API Requests
 requests==2.31.0
+supabase==2.3.0
 
 #for database
 psycopg2-binary==2.9.11
 
-#for parsing with AI
+# JSON Parsing & Data Validation
+pydantic==2.5.2
 
+#for parsing with AI
 groq
+
+# REST API Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0

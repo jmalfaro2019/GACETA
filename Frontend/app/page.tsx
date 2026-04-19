@@ -1,14 +1,12 @@
 import laws from "@/data/laws";
 import LawCard from "@/components/LawCard";
 import RealLawCard from "@/components/RealLawCard";
-import prisma from "@/lib/prisma";
+import SearchBar from "@/components/SearchBar";
+import { apiClient } from "@/lib/api-client";
 import { Scale, Users, Activity, Sparkles } from "lucide-react";
 
 export default async function HomePage() {
-  const realDocuments = await prisma.document.findMany({
-    take: 2,
-    orderBy: { date_creation: "desc" },
-  });
+  const realDocuments = await apiClient.getDocuments(2);
 
   const totals = laws.reduce(
     (acc, l) => ({
@@ -82,6 +80,11 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Search Section */}
+      <section className="mb-16 -mt-8 relative z-10">
+        <SearchBar />
       </section>
 
       {/* Real Documents Section */}

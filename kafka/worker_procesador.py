@@ -1,6 +1,9 @@
 import json
 import os
-from confluent_kafka import Consumer, KafkaException
+import pika
+from dotenv import load_dotenv
+
+load_dotenv()
 import easyocr
 import numpy as np
 import torch
@@ -11,6 +14,8 @@ import sys
 from PIL import Image
 import psycopg2
 from groq_parser import parse_markdown_to_json
+import requests
+import tempfile
 
 def table_to_markdown(table_data):
     if not table_data or not table_data[0]:
@@ -138,107 +143,142 @@ else:
 print("Loading EasyOCR model...")
 reader = easyocr.Reader(['es', 'en'], gpu=use_gpu)
 
-# Kafka configuration
-kafka_config = {
-    'bootstrap.servers': os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092'),
-    'group.id': os.getenv('GROUP_ID', 'pdf_processors_group_v4'),
-    'auto.offset.reset': 'latest',
-    'max.poll.interval.ms': 900000  # 15 minutes tolerance for slow OCR processing
-}
+# RabbitMQ configuration
+rabbitmq_url = os.getenv('CLOUDAMQP_URL', 'amqp://guest:guest@localhost/%2f')
+params = pika.URLParameters(rabbitmq_url)
+connection = pika.BlockingConnection(params)
+channel = connection.channel()
 
-consumer = Consumer(kafka_config)
-consumer.subscribe([os.getenv('TOPIC', 'new_gazettes')])
+queue_name = 'new_gazettes'
+channel.queue_declare(queue=queue_name, durable=True)
+
+# Important: To avoid overloading one worker, we tell RabbitMQ to only
+# send one message at a time to this worker.
+channel.basic_qos(prefetch_count=1)
 
 os.makedirs("documents_markdown", exist_ok=True)
-print("Master hybrid worker (PDFPlumber + PyMuPDF + EasyOCR) ready!\n")
+print(f"Master hybrid worker ready! Listening on RabbitMQ queue: {queue_name}\n")
 
 
-# Kafka main loop
-try:
-    while True:
-        message = consumer.poll(1.0)
-        if message is None:
-            continue
-        if message.error():
-            print(f"Kafka error: {message.error()}")
-            continue
-
-        data = json.loads(message.value().decode('utf-8'))
+def callback(ch, method, properties, body):
+    try:
+        data = json.loads(body.decode('utf-8'))
         if 'path' not in data:
-            continue
+            ch.basic_ack(delivery_tag=method.delivery_tag)
+            return
 
-        original_pdf_path = data['path']
-        file_name_only = os.path.basename(data.get('file', original_pdf_path))
+        original_pdf_path = data.get('path')
+        file_url = data.get('url')
+        file_name_only = os.path.basename(data.get('file', original_pdf_path or "document.pdf"))
         base_name = file_name_only.replace('.pdf', '')
-        real_pdf_path = os.path.normpath(os.path.join("..", "gaceta_bot", original_pdf_path))
+        
+        print(f"[*] Processing: {file_name_only}")
 
-        print(f"Processing: {file_name_only}")
+        # Distributed file handling: If a URL is provided, we download it first
+        temp_pdf_file = None
+        if file_url:
+            print(f"  - Downloading PDF from: {file_url}")
+            try:
+                # Create a temporary file that will be deleted after processing
+                temp_pdf = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+                response = requests.get(file_url, stream=True)
+                if response.status_code == 200:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        temp_pdf.write(chunk)
+                    temp_pdf.close()
+                    real_pdf_path = temp_pdf.name
+                    temp_pdf_file = temp_pdf.name
+                else:
+                    print(f"  - Error downloading PDF: status {response.status_code}")
+                    ch.basic_ack(delivery_tag=method.delivery_tag)
+                    return
+            except Exception as download_error:
+                print(f"  - Download exception: {download_error}")
+                ch.basic_ack(delivery_tag=method.delivery_tag)
+                return
+        else:
+            # Fallback to local path for development/local testing
+            real_pdf_path = os.path.normpath(os.path.join("..", "gaceta_bot", original_pdf_path))
 
+        # 1. Extraction du texte
+        markdown_text = process_pdf_master(real_pdf_path)
+        
+        # 1.5 Sauvegarde du Markdown (Checkpoint)
+        md_path = os.path.normpath(os.path.join("documents_markdown", f"{base_name}.md"))
+        os.makedirs(os.path.dirname(md_path), exist_ok=True)
+        with open(md_path, "w", encoding="utf-8") as f:
+            f.write(markdown_text)
+        print(f"  - Markdown checkpoint saved to: {md_path}")
+        
+        # 2. AI Processing (Groq)
+        print(f"Sending '{base_name}' to Groq for parsing...")
         try:
-            # 1. Extraction du texte
-            markdown_text = process_pdf_master(real_pdf_path)
+            structured_data = parse_markdown_to_json(markdown_text)
+        except Exception as ai_error:
+            print(f"FATAL ERROR: AI processing failed for '{base_name}': {ai_error}")
+            print("Stopping program to ensure data integrity and avoid wasting API resources.")
+            # We don't ACK the message here so it can be retried later, then exit
+            sys.exit(1)
+        
+        # 3. Sauvegarde dans un fichier local 
+        json_path = os.path.normpath(os.path.join("documents_json", f"{base_name}.json"))
+        os.makedirs(os.path.dirname(json_path), exist_ok=True)
+        
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(structured_data, f, ensure_ascii=False, indent=4)
+            print(f"Success! Saved structured JSON to: {json_path}")
+        
+        # 4. INSERTION DANS PARADEDB
+        try:
+            conn = psycopg2.connect(
+                dbname="gaceta_db",
+                user="admin",
+                password="secret",
+                host="localhost",
+                port="5433"
+            )
+            cursor = conn.cursor()
+            ai_title = structured_data.get("metadatos_generales", {}).get("titulo_principal", base_name)
+            json_para_db = json.dumps(structured_data)
             
-            # 2. AI Processing (Groq)
-            print(f"Sending '{base_name}' to Groq for parsing...")
-            try:
-                structured_data = parse_markdown_to_json(markdown_text)
-            except Exception as ai_error:
-                print(f"FATAL ERROR: AI processing failed for '{base_name}': {ai_error}")
-                print("Stopping program to ensure data integrity and avoid wasting API resources.")
-                sys.exit(1)
-            
-            # 3. Sauvegarde dans un fichier local 
-            json_path = os.path.normpath(os.path.join("documents_json", f"{base_name}.json"))
-            os.makedirs(os.path.dirname(json_path), exist_ok=True)
-            
-            # 2. Sauvegarde dans un archivo local (ton code d'origine)
-            with open(json_path, "w", encoding="utf-8") as f:
-                json.dump(structured_data, f, ensure_ascii=False, indent=4)
-                print(f"Success! Saved structured JSON to: {json_path}")
-            
-            # ---------------------------------------------------------
-            # 3. INSERTION DANS PARADEDB (NOUVEAU CODE)
-            # ---------------------------------------------------------
-            try:
-                # On ouvre la connexion
-                conn = psycopg2.connect(
-                    dbname="gaceta_db",
-                    user="admin",
-                    password="secret",
-                    host="localhost",
-                    port="5433"
-                )
-                cursor = conn.cursor()
-                
-                # Extraemos el título generado por la IA para usarlo en la DB
-                ai_title = structured_data.get("metadatos_generales", {}).get("titulo_principal", base_name)
+            insert_query = """
+                INSERT INTO documents (titre, contenu_json)
+                VALUES (%s, %s);
+            """
+            cursor.execute(insert_query, (ai_title, json_para_db))
+            conn.commit()
+            cursor.close()
+            conn.close()
+            print(f"Success! Inserted '{ai_title}' into ParadeDB.")
+        except Exception as db_error:
+            print(f"Database error while inserting '{base_name}': {db_error}")
 
-                # Convertimos el diccionario a un string JSON para guardarlo en la DB
-                json_para_db = json.dumps(structured_data)
-                
-                # Insertamos el título de la IA y el JSON. La fecha se genera automáticamente (DEFAULT now())
-                insert_query = """
-                    INSERT INTO documents (titre, contenu_json)
-                    VALUES (%s, %s);
-                """
-                cursor.execute(insert_query, (ai_title, json_para_db))
-                
-                # On valide et on ferme
-                conn.commit()
-                cursor.close()
-                conn.close()
-                print(f"Success! Inserted '{ai_title}' into ParadeDB.")
-                
-            except Exception as db_error:
-                print(f"Database error while inserting '{base_name}': {db_error}")
-            # ---------------------------------------------------------
+        # Finalement, on confirme la lecture du message
+        print(f"[x] Done processing '{file_name_only}'\n")
+        
+        # Cleanup temporary file if downloaded
+        if temp_pdf_file and os.path.exists(temp_pdf_file):
+            os.remove(temp_pdf_file)
+            print(f"  - Cleaned up temp file: {temp_pdf_file}")
 
-        except Exception as e:
-            # Errors that are NOT fatal (like PDF extraction issues) are still handled gracefully
-            print(f"Non-fatal error processing document: {e}")
+        ch.basic_ack(delivery_tag=method.delivery_tag)
 
+    except Exception as e:
+        print(f"Non-fatal error processing document: {e}")
+        # Even on error, we ACK or NACK to avoid infinite loop of fails
+        # Here we ACK to remove it from queue since it's probably a corrupt PDF
+        ch.basic_ack(delivery_tag=method.delivery_tag)
+
+
+# Inicia la escucha
+try:
+    channel.basic_consume(queue=queue_name, on_message_callback=callback)
+    channel.start_consuming()
 except KeyboardInterrupt:
     print("\nShutting down worker...")
-finally:
-    consumer.close()
+    connection.close()
+except Exception as global_error:
+    print(f"Global worker error: {global_error}")
+    if not connection.is_closed:
+        connection.close()
 

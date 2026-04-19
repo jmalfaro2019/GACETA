@@ -1,26 +1,10 @@
 import laws from "@/data/laws";
 import ChatWidget from "@/components/ChatWidget";
 import AnalysisActors from "@/components/AnalysisActors";
-import prisma from "@/lib/prisma";
+import { apiClient } from "@/lib/api-client";
 import { ArrowLeft, User, Building2, Calendar, ThumbsUp, ThumbsDown, Minus, Sparkles, FileText, Info, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Prisma } from "@prisma/client";
-
-const STATUS_STYLES: Record<string, { bg: string; text: string }> = {
-  amber: { bg: "rgba(251,191,36,0.1)", text: "#fbbf24" },
-  green: { bg: "rgba(34,197,94,0.1)", text: "#22c55e" },
-  blue: { bg: "rgba(59,130,246,0.1)", text: "#60a5fa" },
-  gray: { bg: "rgba(148,163,184,0.1)", text: "#94a3b8" },
-};
-
-const PARTY_COLORS: Record<string, string> = {
-  purple: "#a78bfa",
-  red: "#f87171",
-  orange: "#fb923c",
-  blue: "#60a5fa",
-  gray: "#94a3b8",
-};
 
 // Force dynamic rendering to avoid static generation issues in dev
 export const dynamic = "force-dynamic";
@@ -33,13 +17,8 @@ export default async function LawDetailPage({
 }) {
   const { id } = await params;
 
-  // Try to find in database first if id is numeric
-  let dbDoc = null;
-  if (!isNaN(Number(id))) {
-    dbDoc = await prisma.document.findUnique({
-      where: { id: parseInt(id) },
-    });
-  }
+  // Try to find in database via REST API first
+  let dbDoc = await apiClient.getDocument(id);
 
   const law = laws.find((l) => l.id === id);
 
@@ -47,9 +26,10 @@ export default async function LawDetailPage({
 
   // If it's a real document from DB
   if (dbDoc) {
-    const data = dbDoc.contenu_json as any;
-    const meta = data.metadatos_generales;
-    const details = data.detalles_especificos;
+    const rawData = dbDoc.contenu_json;
+    const data = (typeof rawData === "string" ? JSON.parse(rawData) : rawData) as any;
+    const meta = data?.metadatos_generales;
+    const details = data?.detalles_especificos;
 
     const dateStr = new Date(dbDoc.date_creation).toLocaleDateString("en-US", {
       year: "numeric",
