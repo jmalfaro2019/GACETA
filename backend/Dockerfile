@@ -10,15 +10,17 @@ RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install
-# We assume the Docker context is the project root (GACETA/)
-COPY requirements.txt .
+# Copy only the backend dependencies first (for better caching)
+COPY backend/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+# Copy the rest of the backend code
+# This copies the CONTENT of the backend/ directory to /app
+COPY backend/ .
 
 # Expose the API port
 EXPOSE 8000
 
 # Command to run the FastAPI app
+# We use 'main:app' because main.py is now in the root of /app
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

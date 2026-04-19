@@ -10,21 +10,19 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy requirements from the root and install
-COPY requirements.txt .
+# Copy ONLY the worker requirements first for caching
+COPY kafka/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Pre-download EasyOCR models so they are ready at runtime
-# This prevents the Space from timing out during initialization
 RUN python -c "import easyocr; easyocr.Reader(['es'])"
 
-# Copy all files from the current directory to /app
-COPY . .
+# Copy the worker code
+COPY kafka/ .
 
 # HF Spaces requires a port to be exposed (usually 7860) 
-# even if we are only running a background consumer.
 EXPOSE 7860
 
 # Command to run the worker
-# We assume worker_procesador.py is in the root of the Space
+# We assume worker_procesador.py is in the root of /app
 CMD ["python", "worker_procesador.py"]

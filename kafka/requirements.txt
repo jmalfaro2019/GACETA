@@ -1,37 +1,19 @@
-# Web Scraping Framework
-scrapy==2.11.2
-lxml==4.9.4
-
-# RabbitMQ - Message Streaming
-pika==1.3.2
-
-# PDF Text Extraction & OCR
+# OCR and PDF processing
+easyocr==1.7.1
 pdfplumber==0.10.3
-PyMuPDF==1.23.8
-easyocr==1.7.0
-torch==2.1.0
-torchvision==0.16.0
-numpy==1.24.3
+PyMuPDF==1.23.6
+Pillow==10.1.0
+numpy==1.26.2
 
-# Image Processing
-Pillow==10.0.0
+# AI / NLP
+groq==0.4.2
 
-# Environment Variables Management
+# Database and Broker
+pika==1.3.2
+psycopg2-binary==2.9.11
+requests==2.31.0
 python-dotenv==1.0.0
 
-# HTTP Library for API Requests
-requests==2.31.0
-supabase==2.3.0
-
-#for database
-psycopg2-binary==2.9.11
-
-# JSON Parsing & Data Validation
-pydantic==2.5.2
-
-#for parsing with AI
-groq
-
-# REST API Framework
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
+# PyTorch (CPU version for cloud hosting)
+torch --extra-index-url https://download.pytorch.org/whl/cpu
+torchvision --extra-index-url https://download.pytorch.org/whl/cpu
