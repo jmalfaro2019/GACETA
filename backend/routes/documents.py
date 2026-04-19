@@ -4,8 +4,8 @@ import json
 import pika
 from typing import List, Optional
 from supabase import create_client, Client
-from ..database import execute_query
-from ..schemas import DocumentResponse, SearchResult
+from database import execute_query
+from schemas import DocumentResponse, SearchResult
 from dotenv import load_dotenv
 
 load_dotenv()

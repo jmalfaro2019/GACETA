@@ -14,13 +14,13 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the worker code and its local dependencies
-COPY kafka/ ./kafka/
+# Copy all files from the current directory to /app
+COPY . .
 
 # HF Spaces requires a port to be exposed (usually 7860) 
 # even if we are only running a background consumer.
 EXPOSE 7860
 
 # Command to run the worker
-# We use the relative path to the script
-CMD ["python", "kafka/worker_procesador.py"]
+# We assume worker_procesador.py is in the root of the Space
+CMD ["python", "worker_procesador.py"]
