@@ -11,12 +11,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy only the backend dependencies first (for better caching)
-COPY backend/requirements.txt ./requirements.txt
+COPY requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the backend code
-# This copies the CONTENT of the backend/ directory to /app
-COPY backend/ .
+COPY . .
 
 # Expose the API port
 EXPOSE 8000
