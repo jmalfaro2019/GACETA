@@ -22,7 +22,7 @@ interface DocumentProps {
     id: number;
     titre: string;
     contenu_json: any;
-    date_creation: Date;
+    date_creation: string | Date;
   };
 }
 
