@@ -1,5 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import os
+
+# HOTFIX: Render sometimes sets HTTP_PROXY which breaks the Supabase client
+# with a "unexpected keyword argument 'proxy'" error.
+os.environ.pop("HTTP_PROXY", None)
+os.environ.pop("HTTPS_PROXY", None)
+os.environ.pop("http_proxy", None)
+os.environ.pop("https_proxy", None)
+
 from routes import documents
 
 app = FastAPI(
